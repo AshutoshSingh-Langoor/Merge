@@ -1,4 +1,3 @@
-import {StatusBar} from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
@@ -10,38 +9,52 @@ import {
   Pressable,
   Alert,
   TextInput,
+  ActivityIndicator,
 } from 'react-native';
 import Logo from '../assets/bedelighted-logo.png';
-// import {MaterialIcons} from '@expo/vector-icons';
-// import {AntDesign} from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
-import ForgotPassword from './ForgotPassword';
-// import RegisterScreen from './RegisterScreen';
-import RegistrationScreen from './RegistrationScreen';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // New state for loading
   const navigation = useNavigation();
 
   const handleGuestLogin = () => {
     navigation.navigate('GuestScreen');
   };
-  // const handleRegister = () => {
-  //   navigation.navigate('RegisterScreen');
-  // };
 
-  const handleLogin = () => {
-    const email = 'Admin@gmail.com';
-    const password = 'Admin@123';
+  const handleLogin = async () => {
+    setLoading(true); // Show loader
+    try {
+      const response = await fetch('https://native.bedelighted.afucent.com/wp-json/jwt-auth/v1/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
 
-    if (email === 'Admin@gmail.com' && password === 'Admin@123') {
-      // Successful login
-      navigation.replace('Main');
-    } else {
-      // Unsuccessful login
-      Alert.alert('Login Error', 'Invalid Email or Password');
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        await AsyncStorage.setItem('token', data.token);
+        navigation.replace('Main');
+      } else {
+        console.log('Error:', data);
+        Alert.alert('Wrong Credentials', 'Please check your credentials');
+      }
+    } catch (error) {
+      console.log('Login Error:', error);
+      Alert.alert('Login Error', 'Something went wrong');
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
@@ -52,9 +65,10 @@ export default function LoginScreen() {
       </View>
       <KeyboardAvoidingView
         style={styles.keyboardView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
         <View style={styles.centeredView}>
-          <Text style={styles.loginText}>Login </Text>
+          <Text style={styles.loginText}>Login</Text>
           <Pressable onPress={() => navigation.navigate('Register')}>
             <Text style={styles.registerText}>Register</Text>
           </Pressable>
@@ -66,7 +80,8 @@ export default function LoginScreen() {
             margin: 15,
             paddingVertical: 20,
             borderRadius: 5,
-          }}>
+          }}
+        >
           <Text
             style={{
               padding: 10,
@@ -77,18 +92,13 @@ export default function LoginScreen() {
               letterSpacing: 0.6,
               fontWeight: '300',
               paddingBottom: 25,
-            }}>
+            }}
+          >
             Log In Your Account
           </Text>
 
           <View style={styles.inputContainer}>
             <View style={styles.inputView}>
-              {/* <MaterialIcons
-              style={{marginLeft: 8}}
-              name="email"
-              size={24}
-              color="gray"
-              /> */}
               <TextInput
                 value={email}
                 onChangeText={setEmail}
@@ -100,12 +110,6 @@ export default function LoginScreen() {
           <View>
             <View style={styles.inputContainer}>
               <View style={styles.inputView}>
-                {/* <AntDesign
-                style={{marginLeft: 8}}
-                name="lock"
-                size={24}
-                color="gray"
-                /> */}
                 <TextInput
                   value={password}
                   onChangeText={setPassword}
@@ -124,40 +128,49 @@ export default function LoginScreen() {
               justifyContent: 'space-between',
               paddingHorizontal: 30,
               paddingVertical: 6,
-            }}>
-            <Text style={{color: '#000000', fontWeight: 300}}>Remember me</Text>
-            <Pressable onPress={() => navigation.navigate(ForgotPassword)}>
-              <Text style={{color: '#007FFF', fontWeight: '300'}}>
+            }}
+          >
+            <Text style={{ color: '#000000', fontWeight: 300 }}>Remember me</Text>
+            <Pressable onPress={() => navigation.navigate('ForgotPassword')}>
+              <Text style={{ color: '#007FFF', fontWeight: '300' }}>
                 Forgot your password?
               </Text>
             </Pressable>
           </View>
-          <View style={{paddingVertical: 15}} />
+          <View style={{ paddingVertical: 15 }} />
           <Pressable
             onPress={handleLogin}
             style={{
               width: '85%',
-
               backgroundColor: '#3F6065',
               borderRadius: 3,
               marginLeft: 'auto',
               marginRight: 'auto',
               padding: 12,
-            }}>
-            <Text
-              style={{
-                textAlign: 'center',
-                color: 'white',
-                fontSize: 17,
-                fontWeight: '300',
-                fontFamily: 'Fidena',
-                letterSpacing: 0.6,
-              }}>
-              Log in
-            </Text>
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {loading ? (
+              <ActivityIndicator size="small" color="#ffffff" />
+            ) : (
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: 'white',
+                  fontSize: 17,
+                  fontWeight: '300',
+                  fontFamily: 'Fidena',
+                  letterSpacing: 0.6,
+                }}
+              >
+                Log in
+              </Text>
+            )}
           </Pressable>
         </View>
-        <View style={{marginTop: 100}}>
+        <View style={{ marginTop: 100 }}>
           <Pressable
             onPress={handleGuestLogin}
             style={{
@@ -167,7 +180,8 @@ export default function LoginScreen() {
               marginLeft: 'auto',
               marginRight: 'auto',
               padding: 12,
-            }}>
+            }}
+          >
             <Text
               style={{
                 textAlign: 'center',
@@ -176,7 +190,8 @@ export default function LoginScreen() {
                 letterSpacing: 0.6,
                 fontSize: 17,
                 fontWeight: '300',
-              }}>
+              }}
+            >
               Login as guest
             </Text>
           </Pressable>
@@ -202,19 +217,16 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   centeredView: {
-    // alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 40,
     paddingVertical: 20,
-    // paddingHorizontal: 90,
   },
   loginText: {
     fontFamily: 'Fidena',
     letterSpacing: 0.6,
     fontSize: 26,
     fontWeight: '500',
-    // marginTop: 12,
     color: '#3F6065',
   },
   registerText: {
@@ -224,7 +236,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#3F6065',
   },
-
   inputContainer: {
     marginTop: 10,
     paddingHorizontal: 30,
@@ -233,15 +244,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     fontWeight: 450,
-    // gap: 5,
     backgroundColor: 'white',
     paddingVertical: 4,
-
-    // paddingVertical: 5,
-    // borderRadius: 5,
   },
   textInput: {
-    // marginVertical: 10,
     color: 'gray',
     width: '100%',
     fontSize: 16,

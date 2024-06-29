@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import StackNavigator from './src/navigation/StackNavigation'; // Ensure the path is correct
+import StackNavigator from './src/navigation/StackNavigation'; 
 
 export default function App() {
   return (

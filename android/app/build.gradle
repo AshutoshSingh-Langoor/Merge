@@ -50,10 +50,10 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file('C:/Users/admin/Desktop/Be Delight Build/Be Delight Adnan/android/my-release-key.jks') // Path to your keystore file
-            storePassword 'bedelighted'    // Password for the keystore
+            storeFile file('C:/Users/admin/Desktop/Be Delight Build/Be Delight Adnan/android/app/my-release-key.keystore') // Path to your keystore file
+            storePassword 'bedelight'    // Password for the keystore
             keyAlias 'my-key-alias'                // Key alias name
-            keyPassword 'bedelighted'        // Password for the key
+            keyPassword 'bedelight'        // Password for the key
         }
     }
     buildTypes {

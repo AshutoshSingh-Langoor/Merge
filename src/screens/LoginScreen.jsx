@@ -7,55 +7,76 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  Alert,
   TextInput,
   ActivityIndicator,
 } from 'react-native';
 import Logo from '../assets/bedelighted-logo.png';
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {useState} from 'react';
+import globalStyles from '../styles/globalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false); // New state for loading
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigation = useNavigation();
 
-  const handleGuestLogin = () => {
-    navigation.navigate('GuestScreen');
+  // const handleGuestLogin = () => {
+  //   navigation.navigate('GuestScreen');
+  // };
+
+  const validateEmail = email => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
   };
 
   const handleLogin = async () => {
-    setLoading(true); // Show loader
+    if (!validateEmail(email)) {
+      setErrorMessage('Please enter a valid email address');
+      return;
+    }
+    if (!password) {
+      setErrorMessage('Please enter your password');
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage('');
     try {
-      const response = await fetch('https://native.bedelighted.afucent.com/wp-json/jwt-auth/v1/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        'https://native.bedelighted.afucent.com/wp-json/jwt-auth/v1/token',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: email,
+            password: password,
+          }),
         },
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
-      });
+      );
 
       const data = await response.json();
-      console.log(data);
 
       if (response.ok) {
         await AsyncStorage.setItem('token', data.token);
+        await AsyncStorage.setItem('email', email);
         navigation.replace('Main');
       } else {
         console.log('Error:', data);
-        Alert.alert('Wrong Credentials', 'Please check your credentials');
+        setErrorMessage('Please check your credentials.');
       }
     } catch (error) {
       console.log('Login Error:', error);
-      Alert.alert('Login Error', 'Something went wrong');
+      setErrorMessage('Login error. Something went wrong.');
     } finally {
-      setLoading(false); // Hide loader
+      setLoading(false);
     }
+   
+    
   };
 
   return (
@@ -65,12 +86,11 @@ export default function LoginScreen() {
       </View>
       <KeyboardAvoidingView
         style={styles.keyboardView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={styles.centeredView}>
-          <Text style={styles.loginText}>Login</Text>
+        <Text style={[styles.switchText, { fontWeight: "300" }]}>Login</Text>
           <Pressable onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.registerText}>Register</Text>
+            <Text style={styles.switchText}>Register</Text>
           </Pressable>
         </View>
 
@@ -80,8 +100,7 @@ export default function LoginScreen() {
             margin: 15,
             paddingVertical: 20,
             borderRadius: 5,
-          }}
-        >
+          }}>
           <Text
             style={{
               padding: 10,
@@ -91,19 +110,22 @@ export default function LoginScreen() {
               fontFamily: 'Fidena',
               letterSpacing: 0.6,
               fontWeight: '300',
-              paddingBottom: 25,
-            }}
-          >
-            Log In Your Account
+              // paddingBottom: 25,
+            }}>
+            Log in your account
           </Text>
 
           <View style={styles.inputContainer}>
             <View style={styles.inputView}>
               <TextInput
                 value={email}
-                onChangeText={setEmail}
-                style={styles.textInput}
-                placeholder="Enter your email"
+                onChangeText={text => {
+                  setEmail(text);
+                  setErrorMessage('');
+                }}
+                placeholderTextColor={globalStyles.placeholder.color}
+                style={[styles.textInput]}
+                placeholder="Email Address"
               />
             </View>
           </View>
@@ -112,10 +134,14 @@ export default function LoginScreen() {
               <View style={styles.inputView}>
                 <TextInput
                   value={password}
-                  onChangeText={setPassword}
+                  onChangeText={text => {
+                    setPassword(text);
+                    setErrorMessage('');
+                  }}
                   secureTextEntry={true}
-                  style={styles.textInput}
-                  placeholder="Enter your password"
+                  placeholderTextColor={globalStyles.placeholder.color}
+                  style={[styles.textInput]}
+                  placeholder="Password"
                 />
               </View>
             </View>
@@ -128,16 +154,26 @@ export default function LoginScreen() {
               justifyContent: 'space-between',
               paddingHorizontal: 30,
               paddingVertical: 6,
-            }}
-          >
-            <Text style={{ color: '#000000', fontWeight: 300 }}>Remember me</Text>
+            }}>
+            <Text style={{color: '#000000', fontWeight: 300}}>Remember me</Text>
             <Pressable onPress={() => navigation.navigate('ForgotPassword')}>
-              <Text style={{ color: '#007FFF', fontWeight: '300' }}>
+              <Text style={{color: '#007FFF', fontWeight: '300'}}>
                 Forgot your password?
               </Text>
             </Pressable>
           </View>
-          <View style={{ paddingVertical: 15 }} />
+          {errorMessage ? (
+            <Text
+              style={{
+                color: 'red',
+                textAlign: 'center',
+                paddingHorizontal: 30,
+                marginTop: 10,
+              }}>
+              {errorMessage}
+            </Text>
+          ) : null}
+          <View style={{paddingVertical: 15}} />
           <Pressable
             onPress={handleLogin}
             style={{
@@ -150,8 +186,7 @@ export default function LoginScreen() {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
+            }}>
             {loading ? (
               <ActivityIndicator size="small" color="#ffffff" />
             ) : (
@@ -163,14 +198,13 @@ export default function LoginScreen() {
                   fontWeight: '300',
                   fontFamily: 'Fidena',
                   letterSpacing: 0.6,
-                }}
-              >
+                }}>
                 Log in
               </Text>
             )}
           </Pressable>
         </View>
-        <View style={{ marginTop: 100 }}>
+        {/* <View style={{ marginTop: 0 }}>
           <Pressable
             onPress={handleGuestLogin}
             style={{
@@ -195,7 +229,7 @@ export default function LoginScreen() {
               Login as guest
             </Text>
           </Pressable>
-        </View>
+        </View> */}
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -210,7 +244,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    marginTop: 30,
+    // marginTop: 10,
   },
   keyboardView: {
     flex: 1,
@@ -220,20 +254,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 40,
-    paddingVertical: 20,
+    // paddingVertical: 20,
   },
-  loginText: {
+  switchText: {
     fontFamily: 'Fidena',
     letterSpacing: 0.6,
     fontSize: 26,
-    fontWeight: '500',
-    color: '#3F6065',
-  },
-  registerText: {
-    fontFamily: 'Fidena',
-    letterSpacing: 0.6,
-    fontSize: 26,
-    fontWeight: '500',
+    fontWeight: '200',
     color: '#3F6065',
   },
   inputContainer: {
@@ -248,8 +275,10 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   textInput: {
-    color: 'gray',
+    color: 'black',
+    fontFamily: 'Montserrat',
     width: '100%',
+    fontWeight: '200',
     fontSize: 16,
     borderColor: 'gray',
     borderWidth: 0.4,

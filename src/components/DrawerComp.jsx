@@ -1,14 +1,31 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DrawerComp = () => {
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const fetchEmail = async () => {
+      try {
+        const storedEmail = await AsyncStorage.getItem('email');
+        if (storedEmail) {
+          setEmail(storedEmail);
+        }
+      } catch (error) {
+        console.log('Failed to fetch email from AsyncStorage', error);
+      }
+    };
+
+    fetchEmail();
+  }, []);
 
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem('token');
+      await AsyncStorage.removeItem('email');
       navigation.replace('LoginScreen');
     } catch (error) {
       Alert.alert('Logout Error', 'Something went wrong');
@@ -36,6 +53,9 @@ const DrawerComp = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.drawerContainer}>
+        <Text style={styles.drawerText}>Hi {email}</Text>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -51,6 +71,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  drawerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    margin: 20,
+  },
+  drawerText: {
+    fontSize: 16,
+    fontFamily: 'Montserrat',
+    color: 'black',
+    fontWeight: '200',
+    letterSpacing: 0.6,
   },
   item: {
     padding: 16,

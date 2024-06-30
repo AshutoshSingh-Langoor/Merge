@@ -314,15 +314,10 @@ const StackNavigator = () => {
           component={LoginScreen}
           options={{headerShown: false,BottomTabs:false}}
         />
-        {/* <Stack.Screen
-          name="RegisterScreen"
-          component={RegisterScreen}
-          options={{headerShown: false}}
-        /> */}
         <Stack.Screen
           name="Register"
           component={RegistrationScreen}
-          options={{headerShown: true}}
+          options={{headerShown: false,BottomTabs:false}}
           
         />
         <Stack.Screen
@@ -333,7 +328,7 @@ const StackNavigator = () => {
         <Stack.Screen
           name="ForgotPassword"
           component={ForgotPassword}
-          options={{headerShown: true}}
+          options={{headerShown: false,BottomTabs:false}}
         />
         <Stack.Screen name="CartScreen" component={CartScreen} />
         <Stack.Screen name="Drawer" component={DrawerComp} />

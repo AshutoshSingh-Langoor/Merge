@@ -1,14 +1,10 @@
 import {StyleSheet, View, Image, TextInput, Pressable} from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Logo from '../assets/bedelighted-logo.png';
 import {useNavigation} from '@react-navigation/native';
-import CartScreen from '../screens/CartScreen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import AccountScreen from '../screens/AccountScreen';
-import LoginScreen from '../screens/LoginScreen';
-// import RegisterScreen from '../screens/RegisterScreen';
+
 const HomeHeader = () => {
   const navigation = useNavigation();
   return (
@@ -16,12 +12,7 @@ const HomeHeader = () => {
       <View style={styles.headerContent}>
         <Image style={styles.logo} source={Logo} />
         <View style={styles.iconContainer}>
-          {/* <Pressable onPress={() => navigation.navigate(LoginScreen)}>
-            <Ionicons name="person-outline" size={18} color="#3F6065" />
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate(CartScreen)}>
-            <SimpleLineIcons name="handbag" size={18} color="#3F6065" />
-          </Pressable> */}
+         
           <Pressable onPress={() => navigation.navigate('Drawer')}>
             <FontAwesome name="align-justify" size={18} color="#3F6065" />
           </Pressable>

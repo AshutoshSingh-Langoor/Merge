@@ -7,13 +7,61 @@ import {
   Image,
   KeyboardAvoidingView,
   Pressable,
+  Platform,
+  ActivityIndicator
 } from 'react-native';
 import Logo from '../assets/bedelighted-logo.png';
-import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import globalStyles from '../styles/globalStyles';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const ForgotPassword = () => {
+  const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const handleResetPassword = async () => {
+    if (!validateEmail(email)) {
+      setErrorMessage('Please enter a valid email address');
+      return;
+    }
+
+    const serverUrl = 'https://native.bedelighted.afucent.com/wp-json/custom/v1/forgot-password';
+
+    setLoading(true);
+    setErrorMessage('');
+    setSuccessMessage('');
+    try {
+      const response = await fetch(serverUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccessMessage(data.message || 'A reset link has been sent to your email address.');
+        setEmail('');
+      } else {
+        setErrorMessage(data.message || 'An error occurred. Please try again.');
+      }
+    } catch (error) {
+      setErrorMessage('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -22,47 +70,109 @@ const ForgotPassword = () => {
       <KeyboardAvoidingView
         style={styles.keyboardView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <View style={styles.MainView}>
+        <View style={styles.centeredView}></View>
+
+        <View
+          style={{
+            backgroundColor: 'white',
+            margin: 15,
+            paddingVertical: 20,
+            borderRadius: 5,
+          }}>
           <Text
             style={{
-              fontSize: 17,
+              padding: 10,
+              paddingHorizontal: 30,
+              color: 'black',
+              fontSize: 16,
               fontFamily: 'Fidena',
               letterSpacing: 0.6,
-              fontWeight: '500',
-              marginTop: 12,
-              color: '#041E42',
-              // paddingHorizontal: 20,
+              fontWeight: '300',
             }}>
-            Lost your password?
+            Forgot your password?
           </Text>
+
           <Text
             style={{
-              // paddingHorizontal: 20,
-              color: '#000000',
-              fontWeight: '350',
-              fontSize: 15,
-              marginTop: 18,
+              padding: 10,
+              paddingHorizontal: 30,
+              color: 'black',
+              fontSize: 16,
               fontFamily: 'Fidena',
               letterSpacing: 0.6,
+              fontWeight: '300',
             }}>
-            Please enter your username or email address. You will receive a link
-            to create a new password via email.
+            Please enter your email address. You will receive a link to create a new password via email.
           </Text>
 
           <View style={styles.inputContainer}>
             <View style={styles.inputView}>
               <TextInput
+                value={email}
+                onChangeText={(text) => {
+                  setEmail(text);
+                  setErrorMessage('');
+                  setSuccessMessage('');
+                }}
+                placeholderTextColor={globalStyles.placeholder.color}
                 style={styles.textInput}
-                placeholder="Username or email"
+                placeholder="Email address"
+                keyboardType="email-address"
+                autoCapitalize="none"
               />
             </View>
           </View>
-
-          <View style={{height: 30}} />
+          {errorMessage ? (
+            <Text
+              style={{
+                color: 'red',
+                textAlign: 'center',
+                paddingHorizontal: 30,
+                marginTop: 10,
+              }}>
+              {errorMessage}
+            </Text>
+          ) : null}
+          {successMessage ? (
+            <Text
+              style={{
+                color: 'green',
+                textAlign: 'center',
+                paddingHorizontal: 30,
+                marginTop: 10,
+              }}>
+              {successMessage}
+            </Text>
+          ) : null}
+          <View style={{ paddingVertical: 15 }} />
           <Pressable
-            onPress={() => navigation.goBack()}
-            style={styles.resetButton}>
-            <Text style={styles.resetButtonText}>Reset Password</Text>
+            onPress={handleResetPassword}
+            style={{
+              width: '85%',
+              backgroundColor: '#3F6065',
+              borderRadius: 3,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              padding: 12,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            {loading ? (
+              <ActivityIndicator size="small" color="#ffffff" />
+            ) : (
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: 'white',
+                  fontSize: 17,
+                  fontWeight: '300',
+                  fontFamily: 'Fidena',
+                  letterSpacing: 0.6,
+                }}>
+                Reset Password
+              </Text>
+            )}
           </Pressable>
         </View>
       </KeyboardAvoidingView>
@@ -81,49 +191,30 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    marginTop: 30,
   },
   keyboardView: {
     flex: 1,
     width: '100%',
   },
-  MainView: {
-    backgroundColor: 'white',
-    margin: 10,
-    // height: 300,
-    padding: 20,
-  },
-
   inputContainer: {
     marginTop: 10,
+    paddingHorizontal: 30,
   },
   inputView: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingVertical: 18,
+    paddingVertical: 4,
   },
   textInput: {
-    fontFamily: 'Fidena',
-    letterSpacing: 0.6,
-    color: '#000000',
+    color: 'black',
+    fontFamily: 'Montserrat',
     width: '100%',
+    fontWeight: '200',
     fontSize: 16,
     borderColor: 'gray',
     borderWidth: 0.4,
-    padding: 10,
-  },
-  resetButton: {
-    width: '100%',
-    backgroundColor: '#3F6065',
-    padding: 15,
-  },
-  resetButtonText: {
-    fontFamily: 'Fidena',
-    letterSpacing: 0.6,
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    paddingHorizontal: 15,
+    borderRadius: 3,
   },
 });

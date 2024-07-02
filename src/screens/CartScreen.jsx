@@ -1,10 +1,27 @@
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchUserCartDetails } from '../services/user_cart_details';
 import CartHeader from '../components/CartHeader';
 import CartProductContent from '../components/CartProductContent';
 import CartDetails from '../components/CartDetails';
 
 const CartScreen = () => {
+
+  const [cart, setCart] = useState({ items: [], total_items: 0, cart_total: '' });
+
+    useEffect(() => {
+        const getCartDetails = async () => {
+            const cartData = await fetchUserCartDetails();
+            if (cartData) {
+                console.log('Fetched Cart Details:', cartData); // Log the fetched cart details
+                setCart(cartData);
+            }
+        };
+
+        getCartDetails();
+    }, []);
+
+   
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>

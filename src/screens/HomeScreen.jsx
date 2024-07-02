@@ -20,47 +20,21 @@ import HomeCategory from '../components/HomeCategory';
 import HomeSkinCareCategory from '../components/HomeSkinCareCategory';
 import HomeHairCareCategory from '../components/HomeHairCareCategory';
 import HomeFragranceCategory from '../components/HomeFragranceCategory';
-const HomeScreen = () => {
-  // useEffect(()=>{
-  //   getData();
-  // },[])
 
-  // const getData = async () => {
-  //   try {
-  //     const CONSUMER_KEY = "ck_3bfb5288c9eb2d1d0b7c6f8990c37d2023d3927d";
-  //     const CONSUMER_SECRET = "cs_71a3e06565cf8a0a3c174956fb71a1f6482d33b0";
-  
-  //     const url = new URL("dev.bedelighted.afucent.com/wp-json/wc/v3/customers");
-  
-  //     const authString = (`${CONSUMER_KEY}:${CONSUMER_SECRET}`); 
-  //     console.log("authString",authString);
-  
-  //     const headers = new Headers({
-  //       "Authorization": `Basic ${authString}`,
-  //       "Content-Type": "application/json",
-  //       "OAuth1":{
-  //         "oauth_consumer_key": CONSUMER_KEY,
-          
-  //       }
-  //     });
-  
-  //     const response = await fetch(url, {
-  //       method: "GET", 
-  //       headers,
-  //     });
-  
-  //     if (!response.ok) {
-  //       throw new Error(`Error fetching data: ${response.statusText}`);
-  //     }
-  
-  //     const data = await response.json();
-  //     console.log("Fetched customer data:", data);
-  //     console.warn("Fetched customer data:", data)
-  //   } catch (error) {
-  //     console.error("Error:", error.message);
-  //   }
-  // };
-  
+import { fetchUserProfile } from '../services/user_profile';
+
+const HomeScreen = () => {
+
+  useEffect(() => {
+    const getUserProfile = async () => {
+        const profileData = await fetchUserProfile();
+        if (profileData) {
+            console.log('User Profile:', profileData);
+        }
+    };
+
+    getUserProfile();
+}, []);
 
   return (
     <ScrollView style={styles.container}>

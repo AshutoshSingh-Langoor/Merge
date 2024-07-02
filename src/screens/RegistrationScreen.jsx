@@ -43,7 +43,7 @@ const RegisterScreen = () => {
     }
 
     const user = { username, email, password };
-    const serverUrl = 'https://native.bedelighted.afucent.com/wp-json/custom/v1/register';
+    const serverUrl = 'https://native.bedelighted.afucent.com/wp-json/custom/v1/register_qwertyuiop';
 
     setLoading(true);
     setErrorMessage('');

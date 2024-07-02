@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,9 +9,38 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Collapsible from 'react-native-collapsible';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { fetchAllProducts } from '../services/all_products';
+import { fetchProductSearchResults } from '../services/search_products';
 
 const ShopScreen = () => {
+
+  const [products, setProducts] = useState([]);
+  const [keyword, setKeyword] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const productsData = await fetchAllProducts();
+      if (productsData) {
+        console.log('Fetched Products:', productsData); // Log the fetched products data
+        setProducts(productsData);
+      }
+    };
+
+    getProducts();
+  }, []);
+
+  const handleSearch = async () => {
+    if (keyword.trim()) {
+      const results = await fetchProductSearchResults(keyword);
+      if (results) {
+        console.log('Search Results:', results); // Log the search results
+        setSearchResults(results);
+      }
+    }
+  };
+
   const categories = [
     {
       title: 'Skincare',
@@ -106,13 +135,19 @@ const ShopScreen = () => {
               justifyContent: 'flex-start',
             }}
             placeholder="I'm shopping for..."
+            placeholderTextColor={'#636363'}
+            onChangeText={text => setKeyword(text)}
+            value={keyword}
+            onSubmitEditing={handleSearch}
           />
-          <Ionicons
-            name="search"
-            size={24}
-            color="#3F6065"
-            style={styles.searchIcon}
-          />
+          <TouchableOpacity onPress={handleSearch}>
+            <Ionicons
+              name="search"
+              size={24}
+              color="#3F6065"
+              style={styles.searchIcon}
+            />
+          </TouchableOpacity>
         </View>
       </View>
       {categories.map((category, index) => (
@@ -122,10 +157,10 @@ const ShopScreen = () => {
   );
 };
 
-const Accordion = ({title, items}) => {
+const Accordion = ({ title, items }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-
   const navigation = useNavigation();
+
   const categoryMap = {
     'Face oils & Balm': 'FaceOilandBalm',
     'Face moisturizer & day cream': 'MoisturizerandDayCream',
@@ -150,12 +185,12 @@ const Accordion = ({title, items}) => {
     'Shampoo': 'SkinCare',
     'Hair Oil': 'SkinCare',
     'Hair Serum': 'SkinCare',
-  };
+  };
 
   const handlePress = item => {
     const screenName = categoryMap[item];
     if (screenName) {
-      navigation.navigate(screenName, {category: item});
+      navigation.navigate(screenName, { category: item });
     }
   };
 
@@ -190,25 +225,6 @@ const Accordion = ({title, items}) => {
 export default ShopScreen;
 
 const styles = StyleSheet.create({
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#636363',
-    marginTop: 10,
-    width: '90%',
-  },
-  searchInput: {
-    flex: 1,
-    height: 40,
-  },
-  searchIcon: {
-    padding: 8,
-    color: 'white',
-    backgroundColor: 'black',
-  },
   container: {
     flex: 1,
   },
@@ -247,5 +263,9 @@ const styles = StyleSheet.create({
   },
   subItemText: {
     color: 'black',
+  },
+  searchIcon: {
+    padding: 8,
+    color: '#3F6065',
   },
 });

@@ -1,11 +1,26 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import React from 'react';
+import { fetchUserWishlistDetails } from '../services/user_wishlist_details';
+import React, { useState, useEffect } from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 const WishListScreen = () => {
   const navigation = useNavigation();
+
+    const [wishlist, setWishlist] = useState({ items: [], total_items: 0 });
+
+    useEffect(() => {
+        const getWishlistDetails = async () => {
+            const wishlistData = await fetchUserWishlistDetails();
+            if (wishlistData) {
+                console.log('Fetched Wishlist Details:', wishlistData); // Log the fetched wishlist details
+                setWishlist(wishlistData);
+            }
+        };
+
+        getWishlistDetails();
+    }, []);
+
+
   return (
     <View style={{flex: 1}}>
       <View style={styles.iconContainer}>

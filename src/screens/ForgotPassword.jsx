@@ -33,7 +33,7 @@ const ForgotPassword = () => {
       return;
     }
 
-    const serverUrl = 'https://native.bedelighted.afucent.com/wp-json/custom/v1/forgot-password';
+    const serverUrl = 'https://native.bedelighted.afucent.com/wp-json/custom/v1/forgot-password_qwertyuiop';
 
     setLoading(true);
     setErrorMessage('');

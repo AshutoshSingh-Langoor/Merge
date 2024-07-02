@@ -53,6 +53,8 @@ import BBCream from '../components/BBCream';
 import BBCreamDetail from '../components/BBCreamDetail';
 import Blush from '../components/Blush';
 import BlushDetail from '../components/BlushDetail';
+import Highlighters from '../components/Highlighters';
+import HighlighterDetail from '../components/HighlighterDetail';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -396,6 +398,8 @@ const StackNavigator = () => {
         <Stack.Screen name="BBCreamDetail" component={BBCreamDetail} />
         <Stack.Screen name="Blush" component={Blush} />
         <Stack.Screen name="BlushDetail" component={BlushDetail} />
+        <Stack.Screen name="Highlighters" component={Highlighters} />
+        <Stack.Screen name="HighlighterDetail" component={HighlighterDetail} />
         <Stack.Screen name="HairCareDetail" component={HairCareDetailScreen} />
         <Stack.Screen name="FragranceDetail" component={FragranceDetail} />
         <Stack.Screen name="FAQs" component={FAQ} />

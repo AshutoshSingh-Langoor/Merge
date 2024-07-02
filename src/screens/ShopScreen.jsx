@@ -138,19 +138,19 @@ const Accordion = ({title, items}) => {
     'Under Eye Roll On': 'UnderEyeRoll',
     'Eye Masks & Patches': 'EyePatches',
     'BB & CC Cream': 'BBCream',
-    Blush: 'Blush',
-    Highlighters: 'SkinCare',
+    'Blush': 'Blush',
+    'Highlighters': 'Highlighters',
     'Setting Spray & Fixers': 'SkinCare',
     'Kajal & Kohls': 'SkinCare',
-    Eyeliner: 'SkinCare',
+    'Eyeliner': 'SkinCare',
     'Eye shadow': 'SkinCare',
     'Head Massager': 'SkinCare',
     'Hair Color': 'SkinCare',
     'Hair Cream. Packs  Masks': 'SkinCare',
-    Shampoo: 'SkinCare',
+    'Shampoo': 'SkinCare',
     'Hair Oil': 'SkinCare',
     'Hair Serum': 'SkinCare',
-  };
+  };
 
   const handlePress = item => {
     const screenName = categoryMap[item];

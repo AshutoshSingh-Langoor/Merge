@@ -34,7 +34,7 @@
 //           />
 //           <View style={styles.textContainer}>
 //             <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
-//               ₹ 300
+//               $ 300
 //             </Text>
 //             <Text style={styles.itemText}>Perfume</Text>
 //           </View>
@@ -48,7 +48,7 @@
 //           />
 //           <View style={styles.textContainer}>
 //             <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
-//               ₹ 300
+//               $ 300
 //             </Text>
 //             <Text style={styles.itemText}>Chanel</Text>
 //           </View>
@@ -99,56 +99,56 @@ const hairCareProducts = [
   {
     id: '1',
     title: 'Dior',
-    price: '₹ 3000',
+    price: '$ 3000',
     imageUri:
       'https://i.pinimg.com/474x/72/4c/41/724c41ad5f78c41727da792c9c10a824.jpg',
   },
   {
     id: '2',
     title: 'Chanel',
-    price: '₹ 300',
+    price: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/d7/5e/25/d75e25d87125f35c88500869420ac7af.jpg',
   },
   {
     id: '3',
     title: 'Versace',
-    price: '₹ 300',
+    price: '$ 300',
     imageUri:
       'https://i.pinimg.com/564x/00/ff/7c/00ff7c737ba8b39ae79c73af4e956355.jpg',
   },
   {
     id: '4',
     title: 'Gucci Flora',
-    price: '₹ 300',
+    price: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/29/44/1b/29441b3aedac2f1fb41c58888f029b06.jpg',
   },
   {
     id: '5',
     title: 'Michael Kors',
-    price: '₹ 300',
+    price: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/7a/23/f9/7a23f9a3c160f54be65aafb35293a780.jpg',
   },
   {
     id: '6',
     title: 'Prada',
-    price: '₹ 300',
+    price: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/a0/6b/be/a06bbee35f083bcc2a5bf895b84cf12e.jpg',
   },
   {
     id: '7',
     title: 'Zara',
-    price: '₹ 300',
+    price: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/b8/55/06/b8550632b95030077cdc14f67b921595.jpg',
   },
   {
     id: '8',
     title: 'White Musk',
-    price: '₹ 300',
+    price: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/71/69/e5/7169e54b41c2813a66d9e168d95ccafc.jpg',
   },

@@ -143,7 +143,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>
@@ -155,7 +155,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>
@@ -220,7 +220,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>
@@ -232,7 +232,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>
@@ -270,7 +270,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>
@@ -282,7 +282,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>
@@ -320,7 +320,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>
@@ -332,7 +332,7 @@ const HomeScreen = () => {
             style={styles.categoryImages}
           />
           <View style={styles.textContainer}>
-            <Text>₹ 300</Text>
+            <Text>$ 300</Text>
             <Text style={styles.itemText}>Lipstick</Text>
           </View>
         </View>

@@ -36,7 +36,7 @@ const HomeDeals = () => {
           />
           <View style={styles.textContainer}>
             <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
-              ₹ 300
+              $ 300
             </Text>
             <Text style={styles.itemText}>Fragrance & Beyond</Text>
           </View>
@@ -50,7 +50,7 @@ const HomeDeals = () => {
           />
           <View style={styles.textContainer}>
             <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
-              ₹ 300
+              $ 300
             </Text>
             <Text style={styles.itemText}>Fragrance & Beyond</Text>
           </View>

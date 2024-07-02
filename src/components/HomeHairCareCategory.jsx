@@ -14,7 +14,7 @@ const hairCareProducts = [
   {
     id: '1',
     title: 'Face Cream',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/66/a2/bc/66a2bc392c78a205e33b55e6dc11ad99.jpg',
       cashback: '$4.00 CASHBACK'
@@ -22,7 +22,7 @@ const hairCareProducts = [
   {
     id: '2',
     title: 'Swiss Beauty natural product',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/30/82/f7/3082f72dce7c49c33bc08c03d32675e4.jpg',
       cashback: '$4.00 CASHBACK'
@@ -30,7 +30,7 @@ const hairCareProducts = [
   {
     id: '3',
     title: 'Face Cream',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/66/a2/bc/66a2bc392c78a205e33b55e6dc11ad99.jpg',
       cashback: '$4.00 CASHBACK'
@@ -38,7 +38,7 @@ const hairCareProducts = [
   {
     id: '4',
     title: 'Face Mask',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$4.00 CASHBACK'
@@ -46,7 +46,7 @@ const hairCareProducts = [
   {
     id: '5',
     title: 'Face Cream',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/a6/9c/87/a69c87888f5d04f203d85e6367e1741c.jpg',
       cashback: '$4.00 CASHBACK'
@@ -54,7 +54,7 @@ const hairCareProducts = [
   {
     id: '6',
     title: 'Face Mask',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$4.00 CASHBACK'
@@ -62,7 +62,7 @@ const hairCareProducts = [
   {
     id: '7',
     title: 'Face Cream',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/a6/9c/87/a69c87888f5d04f203d85e6367e1741c.jpg',
       cashback: '$4.00 CASHBACK'
@@ -70,7 +70,7 @@ const hairCareProducts = [
   {
     id: '8',
     title: 'Face Mask',
-    productPrice: '₹ 300',
+    productPrice: '$ 300',
     imageUri:
       'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$4.00 CASHBACK'

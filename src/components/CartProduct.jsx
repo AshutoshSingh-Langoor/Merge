@@ -32,7 +32,7 @@
 //         Blush
 //       </Text>
 //       <Text style={{fontSize: 16, color: 'gray', fontWeight: 500}}>
-//         ₹ 550/-
+//         $ 550/-
 //       </Text>
 //       <Text
 //         style={{
@@ -56,7 +56,7 @@
 //         Blush
 //       </Text>
 //       <Text style={{fontSize: 16, color: 'gray', fontWeight: 500}}>
-//         ₹ 550/-
+//         $ 550/-
 //       </Text>
 //       <Text
 //         style={{

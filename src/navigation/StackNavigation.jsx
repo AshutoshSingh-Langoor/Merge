@@ -31,6 +31,28 @@ import FAQ from '../pages/FAQ';
 import ContactUs from '../pages/ContactUs';
 import GlobalCart from '../pages/GlobalCart';
 import SingleCart from '../pages/SingleCart';
+import FaceoilandBalmDetail from '../components/FaceoilandBalmDetail';
+import FaceOilandBalm from '../components/FaceOilandBalm';
+import MoisturizerandDayCream from '../components/MoisturizerandDayCream';
+import MoisturizerAndDayCreamDetail from '../components/MoisturizerAndDayCreamDetail';
+import NightCream from '../components/NightCream';
+import NightCreamDetail from '../components/NightCreamDetail';
+import FaceGel from '../components/FaceGel';
+import FaceGelDetail from '../components/FaceGelDetail';
+import FaceMaskPacks from '../components/FaceMaskPacks';
+import FaceMaskPackDetail from '../components/FaceMaskPackDetail';
+import SheetMask from '../components/SheetMask';
+import SheetMaskDetail from '../components/SheetMaskDetail';
+import SleepingMask from '../components/SleepingMask';
+import SleepingMaskDetail from '../components/SleepingMaskDetail';
+import UnderEyeRoll from '../components/UnderEyeRoll';
+import UnderEyeRollDetail from '../components/UnderEyeRollDetail';
+import EyePatches from '../components/EyePatches';
+import EyePatchesDetail from '../components/EyePatchesDetail';
+import BBCream from '../components/BBCream';
+import BBCreamDetail from '../components/BBCreamDetail';
+import Blush from '../components/Blush';
+import BlushDetail from '../components/BlushDetail';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -109,7 +131,7 @@ function BottomTabs() {
             fontFamily: 'Fidena',
             letterSpacing: 0.6,
           },
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({focused}) =>
             focused ? (
               <FontAwesome5 name="shopping-bag" size={18} color="#3F6065" />
@@ -129,7 +151,7 @@ function BottomTabs() {
             fontFamily: 'Fidena',
             letterSpacing: 0.6,
           },
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({focused}) =>
             focused ? (
               <AntDesign name="heart" size={18} color="#3F6065" />
@@ -140,7 +162,7 @@ function BottomTabs() {
       />
       <Tab.Screen
         name="AccountScreen"
-        component={LoginScreen}
+        component={AccountScreen}
         options={{
           tabBarLabel: 'Account',
           tabBarLabelStyle: {
@@ -149,19 +171,19 @@ function BottomTabs() {
             fontFamily: 'Fidena',
             letterSpacing: 0.6,
           },
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({focused}) =>
             focused ? (
               <Ionicons name="person" size={18} color="#3F6065" />
             ) : (
               <Ionicons name="person-outline" size={18} color="#3F6065" />
             ),
-          tabBarButton: props => (
-            <TabBarButton
-              {...props}
-              onPress={() => handleAccountPress(props,navigation)}
-            />
-          ),
+          // tabBarButton: props => (
+          //   <TabBarButton
+          //     {...props}
+          //     onPress={() => handleAccountPress(props,navigation)}
+          //   />
+          // ),
         }}
       />
     </Tab.Navigator>
@@ -290,7 +312,7 @@ function BottomTabGuest() {
             fontFamily: 'Fidena',
             letterSpacing: 0.6,
           },
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({focused}) =>
             focused ? (
               <Ionicons name="person" size={18} color="#3F6065" />
@@ -332,7 +354,48 @@ const StackNavigator = () => {
         />
         <Stack.Screen name="CartScreen" component={CartScreen} />
         <Stack.Screen name="Drawer" component={DrawerComp} />
+        {/* <Stack.Screen name="Account" component={AccountScreen}/> */}
         <Stack.Screen name="Detail" component={SkinCareDetailScreen} />
+        <Stack.Screen name="FaceOilandBalm" component={FaceOilandBalm} />
+        <Stack.Screen
+          name="FaceoilandBalmDetail"
+          component={FaceoilandBalmDetail}
+        />
+        <Stack.Screen
+          name="MoisturizerandDayCream"
+          component={MoisturizerandDayCream}
+        />
+        <Stack.Screen
+          name="MoisturizerAndDayCreamDetail"
+          component={MoisturizerAndDayCreamDetail}
+        />
+        <Stack.Screen name="NightCream" component={NightCream} />
+        <Stack.Screen name="NightCreamDetail" component={NightCreamDetail} />
+        <Stack.Screen name="FaceGel" component={FaceGel} />
+        <Stack.Screen name="FaceGelDetail" component={FaceGelDetail} />
+        <Stack.Screen name="FaceMaskPack" component={FaceMaskPacks} />
+        <Stack.Screen
+          name="FaceMaskPackDetail"
+          component={FaceMaskPackDetail}
+        />
+        <Stack.Screen name="SheetMask" component={SheetMask} />
+        <Stack.Screen name="SheetMaskDetail" component={SheetMaskDetail} />
+        <Stack.Screen name="SleepingMask" component={SleepingMask} />
+        <Stack.Screen
+          name="SleepingMaskDetail"
+          component={SleepingMaskDetail}
+        />
+        <Stack.Screen name="UnderEyeRoll" component={UnderEyeRoll} />
+        <Stack.Screen
+          name="UnderEyeRollDetail"
+          component={UnderEyeRollDetail}
+        />
+        <Stack.Screen name="EyePatches" component={EyePatches} />
+        <Stack.Screen name="EyePatchesDetail" component={EyePatchesDetail} />
+        <Stack.Screen name="BBCream" component={BBCream} />
+        <Stack.Screen name="BBCreamDetail" component={BBCreamDetail} />
+        <Stack.Screen name="Blush" component={Blush} />
+        <Stack.Screen name="BlushDetail" component={BlushDetail} />
         <Stack.Screen name="HairCareDetail" component={HairCareDetailScreen} />
         <Stack.Screen name="FragranceDetail" component={FragranceDetail} />
         <Stack.Screen name="FAQs" component={FAQ} />

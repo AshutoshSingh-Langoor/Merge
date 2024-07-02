@@ -9,12 +9,12 @@ const WishListScreen = () => {
   return (
     <View style={{flex: 1}}>
       <View style={styles.iconContainer}>
-        <Pressable onPress={() => navigation.navigate(CartScreen)}>
+        {/* <Pressable onPress={() => navigation.navigate(CartScreen)}>
           <SimpleLineIcons name="handbag" size={22} color="#3F6065" />
         </Pressable>
         <Pressable onPress={() => navigation.navigate(LoginScreen)}>
           <Ionicons name="person-outline" size={22} color="#3F6065" />
-        </Pressable>
+        </Pressable> */}
         {/* <Pressable onPress={() => navigation.openDrawer()}>
             <FontAwesome name="align-justify" size={18} color="#3F6065" />
           </Pressable> */}

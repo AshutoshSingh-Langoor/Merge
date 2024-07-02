@@ -44,7 +44,7 @@
 //           />
 //           <View style={styles.textContainer}>
 //             <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
-//               ₹ 300
+//               $ 300
 //             </Text>
 //             <Text style={styles.itemText}>Face Cream</Text>
 //           </View>
@@ -58,7 +58,7 @@
 //           />
 //           <View style={styles.textContainer}>
 //             <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
-//               ₹ 300
+//               $ 300
 //             </Text>
 //             <Text style={styles.itemText}>Face Mask</Text>
 //           </View>
@@ -111,7 +111,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '1',
       title: 'Face Cream',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/a6/9c/87/a69c87888f5d04f203d85e6367e1741c.jpg',
       cashback: '$4.00 CASHBACK'
@@ -120,7 +120,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '2',
       title: 'Swiss Beauty natural product',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$1.00 CASHBACK'
@@ -129,7 +129,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '3',
       title: 'Face Cream',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$1.50 CASHBACK'
@@ -138,7 +138,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '4',
       title: 'Face Mask',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$.05 CASHBACK'
@@ -147,7 +147,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '5',
       title: 'Face Cream',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/a6/9c/87/a69c87888f5d04f203d85e6367e1741c.jpg',
       cashback: '$1.00 CASHBACK'
@@ -156,7 +156,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '6',
       title: 'Face Mask',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$4.00 CASHBACK'
@@ -165,7 +165,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '7',
       title: 'Face Cream',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/a6/9c/87/a69c87888f5d04f203d85e6367e1741c.jpg',
       cashback: '$4.00 CASHBACK'
@@ -174,7 +174,7 @@ const HomeSkinCareCategory = () => {
     {
       id: '8',
       title: 'Face Mask',
-      productPrice: '₹ 300',
+      productPrice: '$ 300',
       imageUri:
         'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
       cashback: '$4.00 CASHBACK'

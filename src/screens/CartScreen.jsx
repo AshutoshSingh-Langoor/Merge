@@ -24,7 +24,7 @@ const CartScreen = () => {
           style={styles.image}
         />
         <Text style={styles.productName}>Blush</Text>
-        <Text style={styles.productPrice}>₹ 550/-</Text>
+        <Text style={styles.productPrice}>$ 550/-</Text>
         <Text style={styles.addToCartButton}>Add to Cart</Text>
       </View>
       <View style={styles.productContainer}>
@@ -35,7 +35,7 @@ const CartScreen = () => {
           style={styles.image}
         />
         <Text style={styles.productName}>Blush</Text>
-        <Text style={styles.productPrice}>₹ 550/-</Text>
+        <Text style={styles.productPrice}>$ 550/-</Text>
         <Text style={styles.addToCartButton}>Add to Cart</Text>
       </View>
     </ScrollView>

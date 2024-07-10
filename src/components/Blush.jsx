@@ -15,42 +15,42 @@ const skinCareProduct = [
     title: 'Blush',
     image:
       'https://i.pinimg.com/474x/9c/1c/c4/9c1cc4e5ef3ddac0795459333a454d28.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '2',
     title: 'Long Lasting Blush',
     image:
       'https://i.pinimg.com/474x/f6/e7/db/f6e7db55ff0e0064f313c010542a89b7.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '3',
     title: 'High End Blushes',
     image:
       'https://i.pinimg.com/474x/01/7b/2a/017b2a79e4814c3457a4f1f243e670f2.jpg',
-    price: '₹275.50',
+    price: '$275.50',
   },
   {
     id: '4',
     title: 'Beauty Blush',
     image:
       'https://i.pinimg.com/474x/71/44/15/7144159e7361047ee7cf8b890aa0bb1f.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '5',
     title: 'Rose Blush',
     image:
       'https://i.pinimg.com/474x/65/26/41/652641a434d1fc3f228d6bbebc02eed6.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '6',
     title: 'Matt Blush',
     image:
       'https://i.pinimg.com/474x/c7/0c/d6/c70cd6567398ca69d36c227ecc2fadc4.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
 ];
 

@@ -15,28 +15,28 @@ const skinCareProduct = [
     title: 'Cetaphil Brightening Night Cream',
     image:
       'https://i.pinimg.com/474x/10/0b/62/100b62e99d35ae30b7f0248c454378b1.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '2',
     title: 'Olay Night Cream',
     image:
       'https://i.pinimg.com/474x/ca/52/e0/ca52e062056217395fad864d824194dd.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '3',
     title: 'Origins High-Potency Night-Cream',
     image:
       'https://i.pinimg.com/474x/01/e5/19/01e519ebf95c6b25508a1aa13e42738a.jpg',
-    price: '₹275.50',
+    price: '$275.50',
   },
   {
     id: '4',
     title: 'Fave Night Cream',
     image:
       'https://i.pinimg.com/474x/b7/4d/41/b74d41e7a67ed8a1263f5d5f9337a822.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
 ];
 

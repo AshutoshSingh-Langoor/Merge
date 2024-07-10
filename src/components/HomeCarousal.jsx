@@ -6,14 +6,14 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 
 const screenWidth = Dimensions.get('window').width;
 
 const CarouselData = [
   {
     collection_image:
-      'https://i.pinimg.com/564x/d8/fa/40/d8fa4089f43a0e94b6ccc21f76943fee.jpg',
+      'https://t3.ftcdn.net/jpg/05/33/57/46/360_F_533574640_yn5N7owRVh8677uTycfP7WsEirRUNU6Q.jpg',
   },
   {
     collection_image:
@@ -59,15 +59,20 @@ export default function Carousel() {
     return (
       <View key={index} style={styles.itemContainer}>
         <Image style={styles.image} source={{uri: item.collection_image}} />
+        <View style={styles.dotContainer}>{renderDotIndicator()}</View>
       </View>
     );
   };
 
-  const handleScroll = event => {
-    const scrollPosition = event.nativeEvent.contentOffset.x;
-    const index = Math.floor(scrollPosition / screenWidth);
-    setActiveIndex(index);
+  const viewabilityConfig = {
+    itemVisiblePercentThreshold: 50,
   };
+
+  const onViewableItemsChanged = useCallback(({viewableItems}) => {
+    if (viewableItems.length > 0) {
+      setActiveIndex(viewableItems[0].index);
+    }
+  }, []);
 
   const renderDotIndicator = () => {
     return CarouselData.map((dot, index) => (
@@ -91,9 +96,9 @@ export default function Carousel() {
         renderItem={renderItem}
         horizontal={true}
         pagingEnabled={true}
-        onScroll={handleScroll}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
       />
-      <View style={styles.dot}>{renderDotIndicator()}</View>
     </SafeAreaView>
   );
 }
@@ -102,30 +107,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 15,
-    paddingTop: 20,
-    paddingBottom: 20,
+    marginHorizontal: 12,
+    marginVertical: 30, // paddingHorizontal: 15,
+    // paddingTop: 20,
+    // paddingBottom: 20,
   },
   contentContainer: {},
-  itemContainer: {},
+  itemContainer: {
+    position: 'relative',
+  },
   image: {
     height: 300,
     width: screenWidth,
   },
+  dotContainer: {
+    position: 'absolute',
+    bottom: 10,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   dotindicator: {
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
     height: 10,
     width: 10,
     borderRadius: 5,
     marginHorizontal: 6,
   },
-  dot: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10,
-  },
   activedotindicator: {
-    backgroundColor: 'black',
+    backgroundColor: '#fcb800',
     height: 10,
     width: 10,
     borderRadius: 5,

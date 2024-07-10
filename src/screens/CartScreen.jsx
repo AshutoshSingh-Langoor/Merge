@@ -1,35 +1,63 @@
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Button, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { fetchUserCartDetails } from '../services/user_cart_details';
-import CartHeader from '../components/CartHeader';
-import CartProductContent from '../components/CartProductContent';
-import CartDetails from '../components/CartDetails';
+import CartHeader from '../components/Cart/CartHeader';
+import CartDetails from '../components/Cart/CartDetails';
+import { useNavigation } from '@react-navigation/native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import BreadCrumbs from '../components/GlobalContent/BreadCrumbs';
+import CartProductContent from '../components/Cart/CartProductContent';
 
 const CartScreen = () => {
 
   const [cart, setCart] = useState({ items: [], total_items: 0, cart_total: '' });
+  const navigation = useNavigation();
 
-    useEffect(() => {
-        const getCartDetails = async () => {
-            const cartData = await fetchUserCartDetails();
-            if (cartData) {
-                console.log('Fetched Cart Details:', cartData); // Log the fetched cart details
-                setCart(cartData);
-            }
-        };
+  useEffect(() => {
+    const getCartDetails = async () => {
+      const cartData = await fetchUserCartDetails();
+      if (cartData) {
+        console.log('Fetched Cart Details:', cartData);
+        setCart(cartData);
+      }
+    };
+    getCartDetails();
+  }, []);
 
-        getCartDetails();
-    }, []);
+  const routes = [
+    { name: 'Home', path: 'Home' },
+    { name: 'CartScreen', path: 'CartScreen' },
+  ];
 
-   
-  return (
+  const handleNavigate = (path) => {
+    navigation.navigate(path);
+  };
+
+
+  return (<>
+    <View style={styles.handleLeft}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+
+        <AntDesign name={'arrowleft'} size={24} style={{ marginLeft: 0, color: '#000' }} />
+
+      </TouchableOpacity>
+
+      <Text style={styles.navigationLeftText}>Cart Screen</Text>
+    </View>
+    <View style={styles.container1}>
+
+    </View>
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container2}>
+        <BreadCrumbs routes={routes} onNavigate={handleNavigate} />
+      </View>
       <View style={styles.headerContainer}>
         <Text style={styles.emptyCartText}>Cart </Text>
         {/* Component */}
-        <CartHeader/>
-        <CartProductContent/>
-        <CartDetails/>
+        <CartHeader />
+        {/* <CartProductContent/> */}
+        <CartDetails />
+        {/* Component */}
 
         <Text style={styles.newInStoreText}>New in Store!</Text>
       </View>
@@ -56,6 +84,7 @@ const CartScreen = () => {
         <Text style={styles.addToCartButton}>Add to Cart</Text>
       </View>
     </ScrollView>
+  </>
   );
 };
 
@@ -67,6 +96,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     paddingVertical: 20,
+    backgroundColor: 'white',
+    padding: 10
+
+  },
+  container1: {
+    flex: 1,
+    padding: 0.2,
+  },
+  container2: {
+    flex: 1,
+    padding: 10,
+    position: 'absolute',
+    left: 0
   },
   headerContainer: {
     alignItems: 'center',
@@ -118,4 +160,23 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 60,
   },
+  handleLeft: {
+    backgroundColor: 'white',
+    borderRadius: 0,
+    padding: 10,
+    height: 55,
+    elevation: 20,
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'center',
+    alignItems: 'center'
+
+  },
+  navigationLeftText: {
+    fontSize: 23,
+    fontWeight: '600',
+    color: "#000",
+    marginLeft: 20
+
+  }
 });

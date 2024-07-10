@@ -1,58 +1,141 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, Image } from "react-native";
+import React from "react";
+import DealTimer from "./DealTimer";
 
-const HomeDeals = () => {
+const HomeDeals = ({ toggleButton }) => {
   return (
     <>
       {/* Deals of the day */}
-      <View style={{paddingHorizontal: 8}}>
-        <Text
-          style={{
-            fontSize: 16,
-            fontFamily: 'Fidena',
-            letterSpacing: 0.6,
-            fontWeight: '300',
+      <View
+        style={
+          {
             // paddingHorizontal: 10,
-            padding: 10,
-            backgroundColor: '#E7E7E7',
-            marginBottom: 5,
-            color: '#000000',
-          }}>
-          Deals Of The Day
-        </Text>
+          }
+        }
+      >
+        <View
+          style={{
+            marginHorizontal: 12,
+            paddingVertical: 10,
+            marginVertical: 10,
+            color: "#000000",
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                fontFamily: "Fidena",
+                letterSpacing: 0.6,
+                fontWeight: "500",
+                marginTop: 25,
+                marginBottom: 20,
+                color: '#000',
+              }}
+            >
+              Deals Of The Day
+            </Text>
+            <DealTimer />
+          </View>
+          <View style={styles.line} />
+        </View>
       </View>
+
       <View
         style={{
-          paddingHorizontal: 10,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
+          flexDirection: "row",
+          justifyContent: "space-around",
+          marginBottom: 30,
+          marginHorizontal: 8,
+        }}
+      >
         <View style={styles.itemContainer}>
           <Image
             source={{
-              uri: 'https://i.pinimg.com/474x/7d/06/91/7d0691f7cc4f4b306fa31104090b2bc5.jpg',
+              uri: "https://i.pinimg.com/474x/7d/06/91/7d0691f7cc4f4b306fa31104090b2bc5.jpg",
             }}
             style={styles.categoryImages}
           />
+          {!toggleButton && (
+            <View style={styles.bannerContainer}>
+              <Text style={styles.bannerText}>Trial</Text>
+            </View>
+          )}
+
           <View style={styles.textContainer}>
-            <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
+            <Text style={styles.itemText}>Fragrance & Beyond</Text>
+            <Text
+              style={{
+                fontFamily: "Montserrat-Regular",
+                borderWidth: 1,
+                borderColor: "#43454b",
+                width: "70%",
+                paddingHorizontal: 3,
+                borderRadius: 3,
+                fontWeight: "600",
+                fontSize: 12,
+                color: '#000',
+              }}
+            >
+              $4.99 CASHBACK
+            </Text>
+            <Text
+              style={{
+                color: "#43454b",
+                fontWeight: 500,
+                fontSize: 16,
+                marginVertical: 6,
+              }}
+            >
               $ 300
             </Text>
-            <Text style={styles.itemText}>Fragrance & Beyond</Text>
           </View>
         </View>
         <View style={styles.itemContainer}>
           <Image
             source={{
-              uri: 'https://i.pinimg.com/474x/21/44/ac/2144ac77377d63ce5962fdd1b511a56f.jpg',
+              uri: "https://i.pinimg.com/474x/21/44/ac/2144ac77377d63ce5962fdd1b511a56f.jpg",
             }}
             style={styles.categoryImages}
           />
+          {!toggleButton && (
+            <View style={styles.bannerContainer}>
+              <Text style={styles.bannerText}>Trial</Text>
+            </View>
+          )}
           <View style={styles.textContainer}>
-            <Text style={{color: 'green', fontWeight: 500, fontSize: 16}}>
+            <Text style={styles.itemText}>Fragrance & Beyond</Text>
+            <Text
+              style={{
+                fontFamily: "Montserrat-Regular",
+                borderWidth: 1,
+                borderColor: "#43454b",
+                width: "70%",
+                paddingHorizontal: 3,
+                borderRadius: 3,
+                fontWeight: "600",
+                fontSize: 12,
+                color: '#000',
+              }}
+            >
+              $4.99 CASHBACK
+            </Text>
+            <Text
+              style={{
+                color: "#43454b",
+                fontWeight: 500,
+                fontSize: 16,
+                marginTop: 6,
+              }}
+            >
               $ 300
             </Text>
-            <Text style={styles.itemText}>Fragrance & Beyond</Text>
           </View>
         </View>
       </View>
@@ -66,16 +149,32 @@ const styles = StyleSheet.create({
   categoryContainer: {},
   itemContainer: {},
   categoryImages: {
-    height: 190,
-    width: 190,
-    // borderRadius: 4,
+    height: 180,
+    width: 180,
+    borderRadius: 0,
   },
-  textContainer: {
-    // justifyContent: 'flex-start',
-    // alignItems: 'flex-start',
-    paddingHorizontal: 10,
-  },
+  textContainer: {},
   itemText: {
-    color: '#007FFF',
+    color: "#007FFF",
+    marginVertical: 10,
+  },
+  bannerContainer: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    backgroundColor: "#92be2b",
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    borderRadius: 0,
+  },
+  bannerText: {
+    color: "white",
+    fontSize: 12,
+    fontWeight: "bold",
+  },
+  line: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#ccc",
+    marginVertical: 10,
   },
 });

@@ -6,8 +6,13 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [tokenforUser,setToken] = useState(null);
+  // console.log("tokenss",tokenforUser);
+  const [redirectPath, setRedirectPath] = useState(null);
+
 
   const login = async (username, password) => {
+    console.log(username,password,"username password")
     try {
       const response = await axios.post('https://native.bedelighted.afucent.com/wp-json/jwt-auth/v1/token', {
         username: username,
@@ -23,6 +28,7 @@ export const AuthProvider = ({ children }) => {
 
       setUser(userData);
       await AsyncStorage.setItem('user', JSON.stringify(userData));
+
     } catch (error) {
       console.error('Login Error:', error.response.data);
       throw error;
@@ -39,10 +45,11 @@ export const AuthProvider = ({ children }) => {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    return storedUser;
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, checkAuth }}>
+    <AuthContext.Provider value={{ user, login, logout, checkAuth ,setToken,tokenforUser,redirectPath, setRedirectPath}}>
       {children}
     </AuthContext.Provider>
   );

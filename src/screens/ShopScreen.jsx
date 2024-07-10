@@ -99,8 +99,7 @@ const ShopScreen = () => {
             'Hair Color',
             'Hair Cream. Packs  Masks',
             'Shampoo',
-            'Hair Oil',
-            'Hair Serum',
+            'Hair Oil & Serum',
           ],
         },
       ],
@@ -169,22 +168,20 @@ const Accordion = ({ title, items }) => {
     'Face Masks & Packs': 'FaceMaskPack',
     'Sheet Masks': 'SheetMask',
     'Sleeping Masks': 'SleepingMask',
-    'Under Eye Cream, Gel & Serum': 'SkinCare',
+    'Under Eye Cream, Gel & Serum': 'UnderEyeRoll',
     'Under Eye Roll On': 'UnderEyeRoll',
     'Eye Masks & Patches': 'EyePatches',
     'BB & CC Cream': 'BBCream',
     'Blush': 'Blush',
     'Highlighters': 'Highlighters',
-    'Setting Spray & Fixers': 'SkinCare',
-    'Kajal & Kohls': 'SkinCare',
-    'Eyeliner': 'SkinCare',
-    'Eye shadow': 'SkinCare',
-    'Head Massager': 'SkinCare',
-    'Hair Color': 'SkinCare',
-    'Hair Cream. Packs  Masks': 'SkinCare',
-    'Shampoo': 'SkinCare',
-    'Hair Oil': 'SkinCare',
-    'Hair Serum': 'SkinCare',
+    'Setting Spray & Fixers': 'Fixers',
+    'Kajal & Kohls': 'Kajal',
+    'Eyeliner': 'EyeLiner',
+    'Eye shadow': 'EyeShadow',
+    'Head Massager': 'HairTools',
+    'Hair Color': 'HairDyeColor',
+    'Shampoo': 'Shampoo',
+    'Hair Oil & Serum': 'HairOil & Serum',
   };
 
   const handlePress = item => {
@@ -198,11 +195,15 @@ const Accordion = ({ title, items }) => {
     <View style={styles.accordionContainer}>
       <TouchableOpacity
         onPress={() => setIsCollapsed(!isCollapsed)}
-        style={styles.header}>
+        style={[
+          styles.header,
+          {backgroundColor: isCollapsed ? 'white' : '#f1f1f1'},
+        ]}>
         <Text style={styles.headerText}>{title}</Text>
         <Text style={styles.toggleIcon}>{isCollapsed ? '+' : '-'}</Text>
       </TouchableOpacity>
-      <Collapsible collapsed={isCollapsed}>
+
+      <Collapsible collapsed={isCollapsed} style={{backgroundColor: '#666666'}}>
         <View style={styles.content}>
           {items.map((item, index) =>
             typeof item === 'string' ? (
@@ -227,17 +228,19 @@ export default ShopScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   accordionContainer: {
-    marginBottom: 10,
+    // marginBottom: 10,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 14,
     backgroundColor: '#f1f1f1',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#ddd',
   },
   headerText: {
     fontSize: 16,
@@ -247,12 +250,14 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   toggleIcon: {
-    fontSize: 16,
+    fontSize: 20,
     color: 'black',
   },
+
   content: {
     padding: 10,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#f1f1f1',
+    // backgroundColor: '#f9f9f9',
     color: 'black',
     fontWeight: '300',
   },
@@ -260,12 +265,15 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
+    backgroundColor: '#f1f1f1',
   },
   subItemText: {
-    color: 'black',
+    color: '#666666',
+    // backgroundColor: '#f1f1f1',
   },
   searchIcon: {
     padding: 8,
-    color: '#3F6065',
+    color: 'white',
+    backgroundColor: 'black',
   },
 });

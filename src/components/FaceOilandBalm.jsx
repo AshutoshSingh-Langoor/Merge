@@ -15,56 +15,56 @@ const skinCareProduct = [
     title: 'Face Oil',
     image:
       'https://i.pinimg.com/474x/a7/7d/ac/a77dacbc39b4a1e4b35af13f660beedc.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '2',
     title: 'Face Oil',
     image:
       'https://i.pinimg.com/474x/66/eb/fc/66ebfc28adc6be36efa7f8d52f43543a.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '3',
     title: 'Cleansing Balm',
     image:
       'https://i.pinimg.com/474x/41/d5/0b/41d50b14686b9f275d55a818f9613fcc.jpg',
-    price: '₹275.50',
+    price: '$275.50',
   },
   {
     id: '4',
     title: 'Fave Cleansing Balm',
     image:
       'https://i.pinimg.com/474x/f1/3b/94/f13b94ae4053ea64cc6503964270d643.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '5',
     title: 'Face Serum',
     image:
       'https://i.pinimg.com/474x/08/06/b4/0806b48a4a248234d571605b363d0d79.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '6',
     title: 'Facial Serum',
     image:
       'https://i.pinimg.com/474x/f5/62/fc/f562fcd25ce5c3e018ff46155e440227.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '7',
     title: 'Light Oil',
     image:
       'https://i.pinimg.com/474x/48/9c/36/489c368c230bc15ecb08eaa0afbe11c9.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '8',
     title: 'Light Oil',
     image:
       'https://i.pinimg.com/474x/a5/8e/cd/a58ecd2308977855e6e810d57d3d260f.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
 ];
 

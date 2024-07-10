@@ -15,56 +15,56 @@ const skinCareProduct = [
     title: 'Face Mask for Acne',
     image:
       'https://i.pinimg.com/474x/2c/7b/97/2c7b977c8612ea133f9491213148b8a3.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '2',
     title: 'Vitamin-C Mask',
     image:
       'https://i.pinimg.com/474x/1b/5f/99/1b5f99c0493caf0a557aa1e8ba0581c8.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '3',
     title: 'D Tan Face Mask',
     image:
       'https://i.pinimg.com/474x/d0/2d/ce/d02dcea292577b78ffee8c66a3f10975.jpg',
-    price: '₹275.50',
+    price: '$275.50',
   },
   {
     id: '4',
     title: 'Turmeric Mask',
     image:
       'https://i.pinimg.com/474x/0d/11/b4/0d11b4b4a34cb5bfb24c6f692f39a187.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '5',
     title: 'Rosy Glow',
     image:
       'https://i.pinimg.com/474x/c1/41/a0/c141a06d6e80f483267c8f988eeb4f11.jpg',
-    price: '₹105.30',
+    price: '$105.30',
   },
   {
     id: '6',
     title: 'Vitamin-C Clay Mask',
     image:
       'https://i.pinimg.com/474x/27/ea/0a/27ea0afb64cfdb3fb373ee751a55b92b.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '7',
     title: 'Honey Face Mask',
     image:
       'https://i.pinimg.com/474x/06/b2/58/06b2582a78f141866554978336f201e8.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
   {
     id: '8',
     title: 'Dead Sea Mud Mask',
     image:
       'https://i.pinimg.com/474x/b3/0c/88/b30c88c0611212b7eced04b0d82f77b8.jpg',
-    price: '₹85.62',
+    price: '$85.62',
   },
 ];
 

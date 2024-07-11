@@ -16,28 +16,28 @@ const skinCareProduct = [
     title: 'Glow Setting Spray',
     image:
       'https://i.pinimg.com/474x/0a/b1/9c/0ab19c9ef509be36e2f4cab55e503aed.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Mini Makeup Fixer Fixer Set',
     image:
       'https://i.pinimg.com/474x/99/cc/8d/99cc8d21787953fc39783f0b1bb111c5.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Velvet Makeup Setting Spray',
     image:
       'https://i.pinimg.com/474x/47/72/e3/4772e3fd824ce60d80d800ad06a18d8e.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Prime Fix',
     image:
       'https://i.pinimg.com/474x/03/a6/5c/03a65c5b10ea2987900a3efd4fa56474.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
 ];
 
@@ -49,7 +49,7 @@ const Fixers = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -57,13 +57,13 @@ const Fixers = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

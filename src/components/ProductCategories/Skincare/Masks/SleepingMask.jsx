@@ -17,42 +17,42 @@ const skinCareProduct = [
     title: 'Night Face Cream',
     image:
       'https://i.pinimg.com/474x/61/94/6f/61946f5d2c4987f45c88e252606e680e.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Deep Hydration sleeping Mask',
     image:
       'https://i.pinimg.com/474x/dd/ce/19/ddce19eec3162edeca00b48396d0a045.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Glowing Sleeping Mask',
     image:
       'https://i.pinimg.com/474x/59/4d/1a/594d1ab9e221b92962088cbd451bb26d.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Moisturising Mask',
     image:
       'https://i.pinimg.com/474x/2d/d4/69/2dd469d5977ed1c0660d4ad95442f920.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'Jelly Night Mask',
     image:
       'https://i.pinimg.com/474x/7f/4d/96/7f4d968f7b479677b3187e8689829f5d.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Sleeping Mask',
     image:
       'https://i.pinimg.com/474x/40/fd/2d/40fd2d7ed31f897cc79cee904719db4d.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -64,7 +64,7 @@ const SleepingMask = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -72,13 +72,13 @@ const SleepingMask = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

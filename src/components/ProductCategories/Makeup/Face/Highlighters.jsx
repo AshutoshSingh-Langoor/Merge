@@ -17,42 +17,42 @@ const skinCareProduct = [
     title: 'Shine Bright Highlighter',
     image:
       'https://i.pinimg.com/474x/61/8e/9c/618e9c56e5801bd3d4f6f95a7498f667.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Bronzers for Summer',
     image:
       'https://i.pinimg.com/474x/41/da/00/41da001995818924613d0d1b64b8dad1.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Makeup Highlighter Palette',
     image:
       'https://i.pinimg.com/474x/f7/f7/74/f7f7743ae2953423cb94b14d77e4aaec.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Natural Glow',
     image:
       'https://i.pinimg.com/474x/ea/31/ae/ea31aea8e4c9ad7f09403d6157f95e09.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'Highlisht & Glow',
     image:
       'https://i.pinimg.com/474x/ef/40/f6/ef40f6d1292bc372dbbac7f965cf6933.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Highlighter Gel',
     image:
       'https://i.pinimg.com/474x/1d/e8/db/1de8db4f3f7661ada3f27979204d8b49.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -64,7 +64,7 @@ const Highlighters = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -72,13 +72,13 @@ const Highlighters = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

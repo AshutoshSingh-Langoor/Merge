@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Image,
+  Dimensions,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -160,35 +161,11 @@ const CartDetails = () => {
           </View>
         </View>
       ))}
-
-      {/* {Cartdata.map(product => (
-        <View key={product.id} style={styles.card}>
-          <Image source={{ uri: product.image }} style={styles.image} />
-          <View style={styles.details}>
-            <Text style={styles.name}>{product.name}</Text>
-            <Text style={styles.price}><Text style={styles.originalPrice}>{product.originalPrice}</Text> {product.price}</Text>
-
-            <Text style={styles.cashback}>SAVE {product.save}</Text>
-            <Text style={styles.description}>{product.description}</Text>
-            <Text style={styles.total}>Total {product.total}</Text>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity onPress={() => setAdd(add === 0 ? 0 : add - 1)}>
-                <Text style={styles.buttonText}>-</Text>
-              </TouchableOpacity>
-              <Text style={styles.buttonText}>{add}</Text>
-              <TouchableOpacity onPress={() => setAdd(add + 1)}>
-                <Text style={styles.buttonText}>+</Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.description}>Remove Item</Text>
-          </View>
-        </View>
-      ))} */}
-
-
       <View style={styles.container}>
+        <TouchableOpacity onPress={handleInput}>
+
         <View style={styles.iconstyle}>
-          <Text style={styles.couponLabel} onPress={handleInput}>
+          <Text style={styles.couponLabel} >
             Add a coupon
           </Text>
           <Text>
@@ -200,12 +177,14 @@ const CartDetails = () => {
             />
           </Text>
         </View>
+        </TouchableOpacity>
         {inputArrow && (
           <View style={styles.mainCouponArea}>
             <View style={styles.couponContainer}>
               <TextInput
                 style={styles.couponInput}
                 placeholder="Add a coupon"
+                placeholderTextColor={"grey"}
                 editable={isEditable}
                 value={text}
                 onChangeText={(text) => handleTextChange("couponCode", text)}
@@ -254,6 +233,7 @@ const CartDetails = () => {
             <View>
               <TextInput
                 placeholder="Country/Region"
+                placeholderTextColor={'grey'}
                 style={styles.inputText}
                 value={formState.country}
                 onChangeText={(text) => handleTextChange("country", text)}
@@ -261,18 +241,22 @@ const CartDetails = () => {
               <TextInput
                 placeholder="Suburb"
                 style={styles.inputText}
+                placeholderTextColor={'grey'}
+
                 value={formState.suburb}
                 onChangeText={(text) => handleTextChange("suburb", text)}
               />
               <TextInput
                 placeholder="State"
                 style={styles.inputText}
+                placeholderTextColor={'grey'}
                 value={formState.state}
                 onChangeText={(text) => handleTextChange("state", text)}
               />
               <TextInput
-                placeholder="Post Code  "
+                placeholder="Post Code"
                 style={styles.inputText}
+                placeholderTextColor={'grey'}
                 value={formState.postCode}
                 onChangeText={(text) => handleTextChange("postCode", text)}
               />
@@ -304,7 +288,8 @@ const CartDetails = () => {
 };
 
 export default CartDetails;
-
+  const screenWidth = Dimensions.get('window').width;
+  const itemWidth = screenWidth / 1.14;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F1F1F1',
@@ -323,13 +308,25 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1,
   },
+  inputText: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: "white",
+  },
   applyButton: {
     paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: 13,
     borderRadius: 5,
-    borderWidth: 0.9,
+    borderWidth: 1,
+    borderColor: "#E1E1E1",
+    backgroundColor: "#E1E1E1",
     height: 48,
   },
+  applyButtonText: {},
+
   iconstyle: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -406,6 +403,15 @@ const styles = StyleSheet.create({
     color: '#007bff',
     marginVertical: 2,
   },
+  updateButton: {
+    width: "100%",
+    textAlign: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    paddingVertical: 10,
+    borderRadius: 5,
+    color:'#000'
+  },
   shippingOption: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -416,10 +422,20 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: '#007bff',
+    borderColor: "#007bff",
     marginRight: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  radioCircle2: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#007bff",
+    marginRight: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
   radioLabel: {
     flex: 1,
@@ -436,7 +452,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   totalLabel: {
-    fontSize: 8,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
   },
@@ -452,13 +468,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     alignItems: 'center',
-    width: 405,
+    width: itemWidth,
   },
-  checkoutButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
+  
   buttonContainer: {
     width: '60%',
     borderWidth: 1,
@@ -576,10 +588,11 @@ const styles = StyleSheet.create({
   proceedButton: {
     // backgroundColor: 'blue',
     padding: 15,
-    borderRadius: 5,
+    // borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
+    // width:'9%'
   },
   checkoutButtonText: {
     color: '#fff',

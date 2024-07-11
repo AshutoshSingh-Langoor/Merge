@@ -16,28 +16,28 @@ const skinCareProduct = [
     title: 'Depuffing Eye Patches',
     image:
       'https://i.pinimg.com/474x/98/35/ea/9835ea644efc025fc8e31b28a58afe09.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Hydra-Gel Eye-Patches',
     image:
       'https://i.pinimg.com/474x/29/b6/70/29b670f9d859995d7ffaf88785c51395.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Snail Hydrogel Eye Patch',
     image:
       'https://i.pinimg.com/474x/41/f3/e5/41f3e5c07ebbc361c234682ca4146d60.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Eye Patch',
     image:
       'https://i.pinimg.com/474x/ef/93/1f/ef931fb46a29d5763d33710ab2af780f.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
 ];
 
@@ -49,7 +49,7 @@ const EyePatches = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -57,13 +57,13 @@ const EyePatches = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

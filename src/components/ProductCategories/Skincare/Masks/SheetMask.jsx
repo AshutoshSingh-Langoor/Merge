@@ -17,56 +17,56 @@ const skinCareProduct = [
     title: 'Face Mask',
     image:
       'https://i.pinimg.com/474x/9a/54/e6/9a54e6e886f8e51fe31e610c179c5b0a.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Orange Beauty Facial Mask',
     image:
       'https://i.pinimg.com/474x/68/82/38/68823842bc0ffea2882af84da4537b5b.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'SomeByMi Mask',
     image:
       'https://i.pinimg.com/474x/b8/a0/cc/b8a0ccd7183adbea6e739c6ba1707261.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Collagen Sheet Mask',
     image:
       'https://i.pinimg.com/474x/28/10/e6/2810e6f04f4d11152f9a68679458de78.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'Sheet Mask',
     image:
       'https://i.pinimg.com/474x/d2/3b/ce/d23bce4612b7feb3b2376a412da7881a.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Pull Up Mask 30 Sheets',
     image:
       'https://i.pinimg.com/474x/91/64/02/9164026aa42f756dda3d1bd6a7146e6f.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '7',
     title: 'Mama earth Vitamin-C',
     image:
       'https://i.pinimg.com/564x/f1/80/5c/f1805cf6a536b135d3b79dcc4dee067a.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '8',
     title: 'Honey Face Mask',
     image:
       'https://i.pinimg.com/474x/a7/af/dc/a7afdca0241e5a5be8130e7d6543717c.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -78,7 +78,7 @@ const SheetMask = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -86,13 +86,13 @@ const SheetMask = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

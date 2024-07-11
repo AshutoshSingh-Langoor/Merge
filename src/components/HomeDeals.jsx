@@ -30,13 +30,13 @@ const HomeDeals = ({ toggleButton }) => {
           >
             <Text
               style={{
-                fontSize: 18,
+                fontSize: 16,
                 fontFamily: "Fidena",
                 letterSpacing: 0.6,
-                fontWeight: "500",
+                fontWeight: "300",
                 marginTop: 25,
                 marginBottom: 20,
-                color: '#000',
+                color:'#000'
               }}
             >
               Deals Of The Day
@@ -80,7 +80,7 @@ const HomeDeals = ({ toggleButton }) => {
                 borderRadius: 3,
                 fontWeight: "600",
                 fontSize: 12,
-                color: '#000',
+                color:'#000'
               }}
             >
               $4.99 CASHBACK
@@ -121,7 +121,6 @@ const HomeDeals = ({ toggleButton }) => {
                 borderRadius: 3,
                 fontWeight: "600",
                 fontSize: 12,
-                color: '#000',
               }}
             >
               $4.99 CASHBACK
@@ -151,7 +150,6 @@ const styles = StyleSheet.create({
   categoryImages: {
     height: 180,
     width: 180,
-    borderRadius: 0,
   },
   textContainer: {},
   itemText: {
@@ -165,7 +163,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#92be2b",
     paddingVertical: 4,
     paddingHorizontal: 12,
-    borderRadius: 0,
   },
   bannerText: {
     color: "white",

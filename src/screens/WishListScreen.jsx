@@ -171,7 +171,7 @@ const handleNVIAGTE =()=>{
           <TouchableOpacity
             style={styles.button}
             onPress={()=> navigation.navigate('Home')} >
-            <Text style={styles.buttonText}>Go and Shop Now</Text>
+            <Text style={styles.buttonText}>Go and Shop Nows</Text>
           </TouchableOpacity>
 
         </View>
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3F6065',
     paddingVertical: 15,
     paddingHorizontal: 30,
-    borderRadius: 3,
+    borderRadius: 5,
     marginHorizontal: 100,
     marginVertical: 30,
     width: 200,

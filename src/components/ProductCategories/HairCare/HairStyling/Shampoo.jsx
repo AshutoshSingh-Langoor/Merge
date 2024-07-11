@@ -17,42 +17,42 @@ const skinCareProduct = [
     title: 'Natural Hair Color',
     image:
       'https://i.pinimg.com/474x/3f/5e/a0/3f5ea002be828e643f1a1095aacf3fc5.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Chocolate Touch',
     image:
       'https://i.pinimg.com/474x/0c/75/81/0c75818f4a2087dd760253c17bb950f4.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Siso Hair Color (20g)',
     image:
       'https://i.pinimg.com/474x/74/49/47/7449470042aef6d8a0ed90b97e8d84e7.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Pantene',
     image:
       'https://i.pinimg.com/474x/8e/5e/7c/8e5e7ca35e465132020079f3e576732c.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'Kerastase Smoother, stronger, shinier',
     image:
       'https://i.pinimg.com/564x/18/ac/23/18ac2305212e17f55e49bc889d6158b5.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'FARMASI',
     image:
       'https://i.pinimg.com/474x/d5/72/5e/d5725ec4a1455610e12fba7c51fd7337.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -64,7 +64,7 @@ const Shampoo = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -72,13 +72,13 @@ const Shampoo = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

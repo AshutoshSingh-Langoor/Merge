@@ -17,28 +17,28 @@ const skinCareProduct = [
     title: 'Head Massager',
     image:
       'https://img.freepik.com/free-photo/woman-giving-herself-scalp-massage_23-2151301309.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Scalp Massager for Hair growth',
     image:
       'https://img.freepik.com/free-photo/woman-doing-herself-scalp-massage_23-2151453843.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Silicone Shampoo Brush Head Scalp Massage',
     image:
       'https://i.pinimg.com/474x/e1/09/9d/e1099da1472dfc1f2af35fb15619a10a.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '4',
     title: 'Jade hair massage tool',
     image:
       'https://i.pinimg.com/474x/9f/49/ee/9f49ee681cd834763b884ffdb66fa6f9.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -50,7 +50,7 @@ const HairTools = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -58,13 +58,13 @@ const HairTools = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

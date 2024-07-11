@@ -102,12 +102,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderColor: '#ccc',
     borderWidth: 1,
-    color: '#000',
   },
   inputLabel:{
-    fontSize: 14,
-    textAlign:'left',
-    color: '#000',
+    fontSize: 18,
+    textAlign:'left'
   },
   messageInput: {
     height: 100,

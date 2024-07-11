@@ -428,7 +428,6 @@ const HomeSkinCareCategory = ({toggleButton}) => {
               fontWeight: '600',
               fontSize: 12,
               marginTop: 5,
-              color: '#000',
             }}>$4.00 cashback
             {item.cashback}
           </Text>

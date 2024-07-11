@@ -392,7 +392,6 @@ const HomeHairCareCategory = ({toggleButton}) => {
               borderRadius: 3,
               fontWeight: '600',
               fontSize: 12,
-              color: '#000',
             }}>
               $4.00 cashback
             {/* {item.cashback} */}
@@ -464,21 +463,15 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     position: 'relative',
-
-    // alignItems: 'center',
-    // marginRight: 10,
   },
   categoryImages: {
     height: 175,
     width: 180,
     marginRight: 10,
-    // borderRadius: 4,
   },
   textContainer: {
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    // paddingHorizontal: 10,
-    // width: '100%',
   },
   itemText: {
     color: '#0066cc',

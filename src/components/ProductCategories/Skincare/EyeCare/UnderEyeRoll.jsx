@@ -17,28 +17,28 @@ const skinCareProduct = [
     title: 'UnderEye Roller',
     image:
       'https://i.pinimg.com/474x/35/61/d8/3561d816febf497313c065e1a197cd0c.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Eye Serum',
     image:
       'https://i.pinimg.com/474x/dd/53/b7/dd53b7b48984edfa4d5465decab1313c.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Ice Eye Roller',
     image:
       'https://i.pinimg.com/736x/9c/be/d2/9cbed251aa8bf973c7ff1131c81414d4.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'reduce puffiness and dark circles',
     image:
       'https://i.pinimg.com/564x/83/e4/79/83e479f5bed3fc3e62cdc0df9d26cfdb.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
 ];
 
@@ -50,7 +50,7 @@ const UnderEyeRoll = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -58,13 +58,13 @@ const UnderEyeRoll = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

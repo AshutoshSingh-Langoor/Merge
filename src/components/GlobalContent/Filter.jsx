@@ -20,7 +20,7 @@ const Filter = ({setFilterOption}) => {
               setFilterOption([0, 100]);
               setModalVisible(false);
             }}>
-            <Text style={styles.modalText}>$0 - $100</Text>
+            <Text style={styles.modalText}>₹0 - ₹100</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalOption}
@@ -28,7 +28,7 @@ const Filter = ({setFilterOption}) => {
               setFilterOption([100, 250]);
               setModalVisible(false);
             }}>
-            <Text style={styles.modalText}>$100 - $250</Text>
+            <Text style={styles.modalText}>₹100 - ₹250</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalOption}
@@ -36,7 +36,7 @@ const Filter = ({setFilterOption}) => {
               setFilterOption([250, Infinity]);
               setModalVisible(false);
             }}>
-            <Text style={styles.modalText}>$250 and above</Text>
+            <Text style={styles.modalText}>₹250 and above</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalOption}

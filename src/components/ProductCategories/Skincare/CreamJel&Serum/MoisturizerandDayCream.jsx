@@ -17,42 +17,42 @@ const skinCareProduct = [
     title: 'Day Cream',
     image:
       'https://i.pinimg.com/474x/93/dd/8a/93dd8ab46fc5827416a419665bea4fb2.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Gigi Acnon Day Cream',
     image:
       'https://i.pinimg.com/474x/47/22/3f/47223fbd4039e9531c6812cf5372dbdd.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Day Cream Moisturizer',
     image:
       'https://i.pinimg.com/474x/d5/f5/e0/d5f5e07e7d99320082d7be333be75019.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Ponds Day Cream',
     image:
       'https://i.pinimg.com/474x/2c/65/4c/2c654cbace4dbb3657171c22535e1d2f.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'ESTÉE LAUDER DayWear',
     image:
       'https://i.pinimg.com/474x/fe/b0/b4/feb0b4a63c9d734888b169c88d422dc7.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Moisturizer',
     image:
       'https://i.pinimg.com/474x/bb/bd/c1/bbbdc1187e1521c5ff14960ca3a4cb71.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -64,7 +64,7 @@ const MoisturizerandDayCream = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -72,13 +72,13 @@ const MoisturizerandDayCream = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

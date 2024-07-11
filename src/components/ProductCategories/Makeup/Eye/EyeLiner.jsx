@@ -16,56 +16,56 @@ const skinCareProduct = [
     title: 'MARS Liner',
     image:
       'https://i.pinimg.com/474x/ce/c0/06/cec00624fbb121d12ec3ce19c639e717.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Organic Netra Baby Kajal',
     image:
       'https://i.pinimg.com/474x/a1/c4/33/a1c433cb85cd409e6164dab9d7649a9b.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Maybelline York Colossal Kajal',
     image:
       'https://i.pinimg.com/474x/bb/cf/82/bbcf8221499b71e39709d7f3909159a8.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Kajal Eye Pencil',
     image:
       'https://i.pinimg.com/474x/6f/6d/f5/6f6df5647d3a6a2f3d20ea35b05128d2.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'MISS ROSE Eye Enhancing Black Kajal',
     image:
       'https://i.pinimg.com/474x/29/cc/d6/29ccd6597d4276edbe617be12b154a76.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Kohl Of Honour Intense Kajal',
     image:
       'https://i.pinimg.com/474x/e3/9e/ab/e39eab7511c565f7646ed2182b2c829c.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '7',
     title: 'Maliao Auto Kohl Kajal Pencil',
     image:
       'https://img.freepik.com/premium-photo/woman-hand-brush-beauty-makeup-cosmetology-studio-mockup-white-background-confident-female-person-tools-with-cosmetics-glow-flawless-skin-elegant-facial-aesthetic_590464-304497.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '8',
     title: 'Eye Kajal Stick',
     image:
       'https://i.pinimg.com/474x/c0/6d/b2/c06db22b55cede7efa748ba8fd3f4c5f.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -77,7 +77,7 @@ const EyeLiner = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -85,13 +85,13 @@ const EyeLiner = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

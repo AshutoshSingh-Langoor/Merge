@@ -16,42 +16,42 @@ const skinCareProduct = [
     title: 'BB Cream',
     image:
       'https://i.pinimg.com/474x/bd/65/91/bd65916ada077652497ffc5843cdd58a.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'S-40 Core2 BB Cream',
     image:
       'https://i.pinimg.com/474x/45/b4/00/45b400df6a45a1bdc434cb2bc8af1cdd.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'BB Cream Beauty Balm',
     image:
       'https://i.pinimg.com/474x/4f/c9/7a/4fc97ac076d5b8f739eb97f498dd06cb.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Light And Medium BB Cream',
     image:
       'https://i.pinimg.com/474x/7c/49/fb/7c49fbebfbd6307adc440938a3f52cfe.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'SPF 40 BB Cream',
     image:
       'https://i.pinimg.com/474x/95/6f/68/956f68e1f4bfa5bab0878ca034298b6d.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Golden Cream',
     image:
       'https://i.pinimg.com/474x/e7/59/84/e759840f759ef68d0d628fb5ff373b0c.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
 ];
 
@@ -63,7 +63,7 @@ const BBCream = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -71,13 +71,13 @@ const BBCream = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

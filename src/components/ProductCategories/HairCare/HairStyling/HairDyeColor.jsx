@@ -17,42 +17,42 @@ const skinCareProduct = [
     title: 'Natural Hair Color',
     image:
       'https://i.pinimg.com/474x/7b/72/9a/7b729a7f9419b114e0659fd60e2c8337.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Chocolate Touch',
     image:
       'https://i.pinimg.com/474x/1e/be/0f/1ebe0f765232f1710a3dc374d7d69d3e.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Siso Hair Color (20g)',
     image:
       'https://i.pinimg.com/474x/65/21/18/6521186a1ae866f8f89e35821f874331.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Kajal Eye Pencil',
     image:
       'https://i.pinimg.com/474x/8b/3c/d2/8b3cd2dfab2f387a6658079235cc55b8.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'Smoother, stronger, shinier',
     image:
       'https://i.pinimg.com/474x/2c/05/36/2c0536b8432dc9a5b6819d1edee30f27.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Jaqueline Bacich-Parratt',
     image:
       'https://i.pinimg.com/474x/74/81/41/748141ac4bace5e149992e6b8c6f56a5.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -64,7 +64,7 @@ const HairDyeColor = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -72,13 +72,13 @@ const HairDyeColor = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

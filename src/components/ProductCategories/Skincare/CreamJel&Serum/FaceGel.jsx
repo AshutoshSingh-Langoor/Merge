@@ -18,42 +18,42 @@ const skinCareProduct = [
     title: 'Face Gel',
     image:
       'https://i.pinimg.com/474x/83/7c/37/837c37c8122fccc1c7c136b6ccb2935e.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Vitamin Gel',
     image:
       'https://i.pinimg.com/474x/3c/1c/89/3c1c8912f8131fea5551a8b7654cd1f2.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Cleansing Gel',
     image:
       'https://i.pinimg.com/474x/2c/2b/8d/2c2b8d3def1baa4cb1f67a7dcf07b309.jpg',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Anti wrinkles Gel',
     image:
       'https://i.pinimg.com/474x/f1/3b/94/f13b94ae4053ea64cc6503964270d643.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'HydroBoost Gel',
     image:
       'https://i.pinimg.com/474x/d5/a4/76/d5a4760d79dd1128b1206c6322b86d30.jpg',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Vitamin C Gel',
     image:
       'https://i.pinimg.com/474x/58/0b/d4/580bd489cebe147fe9b0aec2a481ace3.jpg',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -65,7 +65,7 @@ const FaceGel = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -73,13 +73,13 @@ const FaceGel = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

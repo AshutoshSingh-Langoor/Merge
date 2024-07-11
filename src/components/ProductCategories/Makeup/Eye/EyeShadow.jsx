@@ -16,56 +16,56 @@ const skinCareProduct = [
     title: 'MARS Kajal',
     image:
       'https://img.freepik.com/free-photo/eyeshadow-palette-with-multiple-shades-cosmetic-powder_23-2150260876.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '2',
     title: 'Organic Netra Baby Kajal',
     image:
       'https://img.freepik.com/free-photo/eyeshadow-palette-with-multiple-shades-cosmetic-powder_23-2150260870.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '3',
     title: 'Maybelline York Colossal Kajal',
     image:
       'https://img.freepik.com/premium-photo/various-makeup-products-black-surface_93675-79631.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$275.50',
+    price: '₹275.50',
   },
   {
     id: '4',
     title: 'Kajal Eye Pencil',
     image:
       'https://img.freepik.com/premium-photo/eyeshadow-makeup-10-pallate-20_725646-83.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '5',
     title: 'MISS ROSE Eye Enhancing Black Kajal',
     image:
       'https://img.freepik.com/free-photo/combination-makeup-textures_23-2150039218.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$105.30',
+    price: '₹105.30',
   },
   {
     id: '6',
     title: 'Kohl Of Honour Intense Kajal',
     image:
       'https://img.freepik.com/free-photo/view-eyeshadow-palette-with-shades-cosmetic-powder_23-2150260868.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '7',
     title: 'Maliao Auto Kohl Kajal Pencil',
     image:
       'https://img.freepik.com/premium-photo/color-professional-cosmetic-palette-dark-background-close-up_93675-80762.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$85.62',
+    price: '₹85.62',
   },
   {
     id: '8',
     title: 'Eye Kajal Stick',
     image:
       'https://img.freepik.com/premium-photo/set-female-cosmetics-pink-background_1048944-8369215.jpg?ga=GA1.1.909963268.1698345736&semt=ais_user',
-    price: '$85.62',
+    price: '₹85.62',
   },
 ];
 
@@ -77,7 +77,7 @@ const EyeShadow = ({navigation}) => {
     if (!filterOption) return products;
 
     return products.filter(product => {
-      const price = parseFloat(product.price.replace('$', ''));
+      const price = parseFloat(product.price.replace('₹', ''));
       return price >= filterOption[0] && price <= filterOption[1];
     });
   };
@@ -85,13 +85,13 @@ const EyeShadow = ({navigation}) => {
   const sortedProducts = [...skinCareProduct].sort((a, b) => {
     if (sortOption === 'priceLowToHigh') {
       return (
-        parseFloat(a.price.replace('$', '')) -
-        parseFloat(b.price.replace('$', ''))
+        parseFloat(a.price.replace('₹', '')) -
+        parseFloat(b.price.replace('₹', ''))
       );
     } else if (sortOption === 'priceHighToLow') {
       return (
-        parseFloat(b.price.replace('$', '')) -
-        parseFloat(a.price.replace('$', ''))
+        parseFloat(b.price.replace('₹', '')) -
+        parseFloat(a.price.replace('₹', ''))
       );
     }
     return 0;

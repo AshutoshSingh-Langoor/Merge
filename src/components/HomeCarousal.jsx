@@ -10,22 +10,25 @@ import React, {useEffect, useRef, useState, useCallback} from 'react';
 
 const screenWidth = Dimensions.get('window').width;
 
-const CarouselData = [
-  {
-    collection_image:
-      'https://t3.ftcdn.net/jpg/05/33/57/46/360_F_533574640_yn5N7owRVh8677uTycfP7WsEirRUNU6Q.jpg',
-  },
-  {
-    collection_image:
-      'https://i.pinimg.com/564x/00/8e/9f/008e9f1ea952292a7cf35a9aac54e9f7.jpg',
-  },
-  {
-    collection_image:
-      'https://i.pinimg.com/474x/9d/68/12/9d68127587b5e501a32b468b70e25854.jpg',
-  },
-];
+export default function Carousel({toggleButton}) {
+  const CarouselData = [
+    {
+      collection_image: toggleButton
+        ? 'https://static.vecteezy.com/system/resources/previews/002/124/914/non_2x/realistic-cosmetic-advertisement-editable-banner-vector.jpg'
+        : 'https://images.samsung.com/is/image/samsung/p6pim/in/feature/165109871/in-feature-galaxy-a55-5g-sm-a556-498926-540539394?$FB_TYPE_A_JPG$',
+    },
+    {
+      collection_image: toggleButton
+        ? 'https://images.pexels.com/photos/2537930/pexels-photo-2537930.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+        : 'https://images.samsung.com/in/smartphones/galaxy-z-fold6/images/galaxy-z-fold6-features-kv.jpg?imbypass=true',
+    },
+    {
+      collection_image: toggleButton
+        ? 'https://www.dontwasteyourmoney.com/wp-content/uploads/2022/06/AdobeStock_307352791-900x400.jpeg'
+        : 'https://images.samsung.com/is/image/samsung/p6pim/in/feature/164474451/in-feature-brilliant--long-lasting-color-with-quantum-dot-535858372?$FB_TYPE_K_JPG$',
+    },
+  ];
 
-export default function Carousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const flatlistRef = useRef();
 

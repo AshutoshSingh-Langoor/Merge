@@ -228,19 +228,17 @@ export default ShopScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
   accordionContainer: {
-    // marginBottom: 10,
+    marginBottom: 10,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
-    paddingVertical: 14,
+    padding: 10,
     backgroundColor: '#f1f1f1',
-    // borderBottomWidth: 1,
-    // borderBottomColor: '#ddd',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   headerText: {
     fontSize: 16,
@@ -250,14 +248,12 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   toggleIcon: {
-    fontSize: 20,
+    fontSize: 16,
     color: 'black',
   },
-
   content: {
     padding: 10,
-    backgroundColor: '#f1f1f1',
-    // backgroundColor: '#f9f9f9',
+    backgroundColor: '#f9f9f9',
     color: 'black',
     fontWeight: '300',
   },
@@ -265,15 +261,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    backgroundColor: '#f1f1f1',
   },
   subItemText: {
-    color: '#666666',
-    // backgroundColor: '#f1f1f1',
+    color: 'black',
   },
   searchIcon: {
     padding: 8,
-    color: 'white',
-    backgroundColor: 'black',
+    color: '#3F6065',
   },
 });

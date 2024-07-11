@@ -9,32 +9,32 @@ export const reducer = (state = initialState, action) => {
             return [
                 ...state,
                 action.data
-            ]; 
-            
+            ];
+
         case Remove_From_Cart:
             return state.filter(item => item.id !== action.data);
-            
+
         default:
             return state;
     }
 };
 
-export const reducerWishlist =(state=initial,action)=>{
+export const reducerWishlist = (state = initial, action) => {
     switch (action.type) {
         case Add_to_Wishlist:
-            return[
+            return [
                 ...state,
                 action.data
             ];
 
-            case Remove_From_Wishlist:
-                return state.filter(item => item.id !== action.data.id);          
-           
-    default:
+        case Remove_From_Wishlist:
+            return state.filter(item => item.id !== action.data.id);
+
+        default:
             return state
-           
+
     }
-    
+
 
 }
 

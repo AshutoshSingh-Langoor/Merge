@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, TouchableOpacity, Alert, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from '../screens/HomeScreen';
@@ -8,14 +8,19 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import CartScreen from '../screens/CartScreen';
-import WishListScreen from '../screens/WishListScreen';0
+import WishListScreen from '../screens/WishListScreen'; 0
 import ShopScreen from '../screens/ShopScreen';
 import AccountScreen from '../screens/AccountScreen';
+import { Badge } from 'react-native-paper';
+import CustomBadge from '../components/GlobalContent/CustomBadge';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const BottomTabs = () => {
+  const wishlistCount = useSelector((state) => state.reducerWishlist.length);
+  const CartDataCount = useSelector((state) => state.reducer.length);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -78,11 +83,18 @@ const BottomTabs = () => {
           },
           headerShown: false,
           tabBarIcon: ({ focused }) =>
-            focused ? (
-              <FontAwesome5 name="shopping-bag" size={18} color="#3F6065" />
-            ) : (
-              <SimpleLineIcons name="handbag" size={18} color="#3F6065" />
-            ),
+          (
+            <View>
+              {
+                focused ? (
+                  <FontAwesome5 name="shopping-bag" size={18} color="#3F6065" />
+                ) : (
+                  <SimpleLineIcons name="handbag" size={18} color="#3F6065" />
+                )
+              }
+              {CartDataCount>0 && <CustomBadge count={CartDataCount}/>}
+            </View>
+          )
         }}
       />
       <Tab.Screen
@@ -97,12 +109,16 @@ const BottomTabs = () => {
             letterSpacing: 0.6,
           },
           headerShown: true,
-          tabBarIcon: ({ focused }) =>
-            focused ? (
-              <AntDesign name="heart" size={18} color="#3F6065" />
-            ) : (
-              <AntDesign name="hearto" size={18} color="#3F6065" />
-            ),
+          tabBarIcon: ({ focused }) => (
+            <View>
+              {focused ? (
+                <AntDesign name="heart" size={18} color="#3F6065" />
+              ) : (
+                <AntDesign name="hearto" size={18} color="#3F6065" />
+              )}
+              {wishlistCount > 0 && <CustomBadge count={wishlistCount} />}
+            </View>
+          ),
         }}
       />
       <Tab.Screen
@@ -132,7 +148,7 @@ const BottomTabs = () => {
         }}
       />
     </Tab.Navigator>
-   
+
   )
 }
 

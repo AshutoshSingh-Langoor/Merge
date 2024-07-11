@@ -123,7 +123,7 @@ const WishlistComponent = ({ navigation }) => {
   const dispatch = useDispatch();
 
   console.log(data);
-const handleNVIAGTE =()=>{
+  const handleNVIAGTE =()=>{
   console.warn("dadnasn");
 }
 
@@ -132,9 +132,9 @@ const handleNVIAGTE =()=>{
     // console.warn(item.id);
   };
   const datalength = data.length
-  const removeHTMLTags = (html) => {
-    return html.replace(/<\/?[^>]+(>|$)/g, "");
-  };
+  // const removeHTMLTags = (html) => {
+  //   return html.replace(/<\/?[^>]+(>|$)/g, "");
+  // };
 
   {
     if (datalength >= 1) {
@@ -152,7 +152,7 @@ const handleNVIAGTE =()=>{
                   <Text style={styles.price}>{item.price}</Text>
                   <Text style={styles.cashback}>{item.cashback}</Text>
                   {/* <Text style={styles.details} source={{ html: removeHTMLTags(item.description) }} ></Text> */}
-                  <Text style={styles.details}>{removeHTMLTags(item.description)}</Text>
+                  {/* <Text style={styles.details}>{removeHTMLTags(item.description)}</Text> */}
                 </View>
                 <TouchableOpacity onPress={() => removeFromWishlist(item)}>
                   <Text style={styles.remove}>X</Text>

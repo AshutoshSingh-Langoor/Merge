@@ -13,7 +13,7 @@
 // import {useNavigation} from '@react-navigation/native';
 // import { fetchAllProducts } from '../services/all_products';
 // import { useDispatch, useSelector } from 'react-redux';
-// import Icon from 'react-native-vector-icons/FontAwesome'; 
+// import Icon from 'react-native-vector-icons/FontAwesome';
 // import { addtowishlist, removefromwishlist } from '../Redux/Action';
 
 // const HomeHairCareCategory = ({toggleButton}) => {
@@ -52,7 +52,7 @@
 //     }
 
 //     const idExists = AllIds.includes(item.id);
-    
+
 //     if (idExists) {
 //         dispatch(removefromwishlist(item));
 //     } else {
@@ -97,7 +97,7 @@
 //               </TouchableOpacity>
 //             </View>
 //           <View style={styles.textContainer}>
-//             <Text style={styles.itemText}>{item.title}</Text>           
+//             <Text style={styles.itemText}>{item.title}</Text>
 //               <Text style={styles.priceText}>{item.price}</Text>
 //           </View>
 //         </Pressable>
@@ -198,7 +198,7 @@
 //     fontSize: 12,
 //     fontWeight: 'bold',
 //   },
-  
+
 // //   container: {
 // //    flex: 1,
 // //    backgroundColor: '#F8F8F8',
@@ -261,12 +261,10 @@
 // //    fontWeight: '500',
 // //    fontSize: 16,
 // //    paddingBottom:5
-  
+
 // //      },
 
- 
 // });
-
 
 import {
   StyleSheet,
@@ -276,12 +274,18 @@ import {
   FlatList,
   Dimensions,
   Pressable,
+  TouchableOpacity,
+  Animated,
 } from 'react-native';
 import React, {useState, useRef, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {fetchAllProducts} from '../services/all_products';
 
-const hairCareProducts = [
+import {addtowishlist, removefromwishlist} from '../Redux/Action';
+
+/* const hairCareProducts = [
   {
     id: '1',
     title: 'Face Cream',
@@ -338,6 +342,81 @@ const hairCareProducts = [
     image:
       'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
   },
+]; */
+
+const hairCareProducts = [
+  {
+    id: '1',
+    title: 'Face Cream',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/66/a2/bc/66a2bc392c78a205e33b55e6dc11ad99.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 5,
+  },
+  {
+    id: '2',
+    title: 'Swiss Beauty natural product',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/30/82/f7/3082f72dce7c49c33bc08c03d32675e4.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 2,
+  },
+  {
+    id: '3',
+    title: 'Face Cream',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/66/a2/bc/66a2bc392c78a205e33b55e6dc11ad99.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 1,
+  },
+  {
+    id: '4',
+    title: 'Face Mask',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 3,
+  },
+  {
+    id: '5',
+    title: 'Face Cream',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/a6/9c/87/a69c87888f5d04f203d85e6367e1741c.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 2,
+  },
+  {
+    id: '6',
+    title: 'Face Mask',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 5,
+  },
+  {
+    id: '7',
+    title: 'Face Cream',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/a6/9c/87/a69c87888f5d04f203d85e6367e1741c.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 4,
+  },
+  {
+    id: '8',
+    title: 'Face Mask',
+    productPrice: '$300',
+    imageUri:
+      'https://i.pinimg.com/474x/7a/97/6f/7a976fb92e368ed60fce8d88ac4dbd2e.jpg',
+    cashback: '$4.00 CASHBACK',
+    points: 1,
+  },
 ];
 
 const HomeHairCareCategory = ({toggleButton}) => {
@@ -346,69 +425,156 @@ const HomeHairCareCategory = ({toggleButton}) => {
   const itemWidth = screenWidth / 2;
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef(null);
-  const wishlistData = useSelector((state) => state.reducerWishlist);
+  const wishlistData = useSelector(state => state.reducerWishlist);
   const [haircaredata, setHaircaredata] = useState([]);
+  const animationValues = useRef({}).current;
+  const AllIds = wishlistData.map(product => product.id);
+  const dispatch = useDispatch();
 
+  // console.log("We are inside HomeHairCareCategory : ", hairCareProducts);
 
   useEffect(() => {
-        const getProductsData = async () => {
-          try {
-            const ProductsData = await fetchAllProducts();
-            if (ProductsData) {
-              const HaircareProduct = ProductsData.filter(product =>
-                product.categories.includes("Haircare") || product.categories.includes("Hair Care")
-              );
-              setHaircaredata(HaircareProduct);
-            }
-          } catch (error) {
-            console.error('Error fetching hair care products:', error);
-          }
-        };
-    
-        getProductsData();
-      }, [wishlistData]);
+    const getProductsData = async () => {
+      try {
+        const ProductsData = await fetchAllProducts();
+        if (ProductsData) {
+          const HaircareProduct = ProductsData.filter(
+            product =>
+              product.categories.includes('Haircare') ||
+              product.categories.includes('Hair Care'),
+          );
+          setHaircaredata(HaircareProduct);
+          // console.log("hairCareData", HaircareProduct)
+        }
+      } catch (error) {
+        console.error('Error fetching hair care products:', error);
+      }
+    };
 
-  const renderItem = ({item}) => (
-    <View style={{marginTop: 30}}>
-      <Pressable
-        // style={styles.itemContainer, {width: itemWidth}]}
-        style={styles.itemContainer}
-        onPress={() => navigation.navigate('SingleCart', {item})}>
-        <Image source={{uri: item.image ||item.image}} style={styles.categoryImages} />
-        {!toggleButton && (
-          <View style={styles.bannerContainer}>
-            <Text style={styles.bannerText}>Trial</Text>
-          </View>
-        )}
-        <View style={styles.textContainer}>
-          <Text style={styles.itemText}>{item.title}</Text>
-          <Text
-            style={{
-              fontFamily: 'Montserrat-Regular',
-              borderWidth: 1,
-              borderColor: '#43454b',
-              width: '70%',
-              paddingHorizontal: 3,
-              borderRadius: 3,
-              fontWeight: '600',
-              fontSize: 12,
-            }}>
+    getProductsData();
+  }, [wishlistData]);
+
+  const handleWishlistPress = item => {
+    // console.log("handleWishlist", item);
+    if (!animationValues[item.id]) {
+      animationValues[item.id] = new Animated.Value(1);
+    }
+
+    const idExists = AllIds.includes(item.id);
+
+    if (idExists) {
+      dispatch(removefromwishlist(item));
+    } else {
+      dispatch(addtowishlist(item));
+    }
+
+    Animated.sequence([
+      Animated.timing(animationValues[item.id], {
+        toValue: 1.05,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(animationValues[item.id], {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const renderItem = ({item}) => {
+    // console.log("item", item);
+
+    const idExists = AllIds.includes(item.id);
+    const lengthOfTitle = item.title.length > 20;
+    return (
+      <View style={{marginTop: 30}}>
+        <Pressable
+          // style={styles.itemContainer, {width: itemWidth}]}
+          style={[styles.itemContainer, {width: itemWidth}]}
+          onPress={() => navigation.navigate('SingleCart', {item})}>
+          <Image
+            source={{uri: item.image || item.imageUri}}
+            style={styles.categoryImages}
+          />
+          {!toggleButton && (
+            <View style={styles.bannerContainer}>
+              <Text style={styles.bannerText}>Trial</Text>
+            </View>
+          )}
+          <View style={styles.textContainer}>
+            <Text style={styles.itemText}>
+              {lengthOfTitle ? item.title.slice(0, 20) : item.title}
+            </Text>
+            {/* <Text
+              style={{
+                fontFamily: "Montserrat-Regular",
+                borderWidth: 1,
+                borderColor: "#43454b",
+                width: "70%",
+                paddingHorizontal: 3,
+                borderRadius: 3,
+                fontWeight: "600",
+                fontSize: 12,
+              }}
+            >
               $4.00 cashback
-            {/* {item.cashback} */}
-          </Text>
-          <Text
-            style={{
-              color: '#43454b',
-              fontWeight: 500,
-              fontSize: 16,
-              marginVertical: 8,
-            }}>
-            {item.price}
-          </Text>
-        </View>
-      </Pressable>
-    </View>
-  );
+              // {item.cashback} 
+            </Text> */}
+            {toggleButton ? (
+              <Text
+                style={{
+                  fontFamily: 'Montserrat-Regular',
+                  borderWidth: 1,
+                  borderColor: '#43454b',
+                  width: '70%',
+                  paddingHorizontal: 3,
+                  borderRadius: 3,
+                  fontWeight: '600',
+                  fontSize: 12,
+                }}>
+                $4.00 cashback
+                {/* {item.cashback} */}
+              </Text>
+            ) : (
+              <Text
+                style={{
+                  color: '#43454b',
+                  fontWeight: 500,
+                  fontSize: 16,
+                  marginVertical: 8,
+                }}>
+                Points : {item.points}
+              </Text>
+            )}
+            <View style={styles.priceContainer}>
+              <Text
+                style={{
+                  color: '#43454b',
+                  fontWeight: 500,
+                  fontSize: 16,
+                  marginVertical: 8,
+                }}>
+                ${item.price}
+              </Text>
+            </View>
+          </View>
+          <TouchableOpacity onPress={() => handleWishlistPress(item)}>
+            <Animated.View
+              style={{transform: [{scale: animationValues[item.id] || 1}]}}>
+              <Icon
+                style={{position: 'absolute', right: 18, top: -38}}
+                name={idExists ? 'heart' : 'heart-o'}
+                size={25}
+                color={idExists ? 'red' : 'grey'}
+              />
+            </Animated.View>
+          </TouchableOpacity>
+        </Pressable>
+       
+      </View>
+    );
+  };
 
   const handleScroll = event => {
     const offsetX = event.nativeEvent.contentOffset.x;
@@ -417,14 +583,17 @@ const HomeHairCareCategory = ({toggleButton}) => {
   };
 
   const renderDotIndicator = () => {
+    const hairCareDatalength = haircaredata.length / 2;
     return (
       <View style={styles.dotContainer}>
-        {hairCareProducts.map((_, index) => (
+        {haircaredata.slice(hairCareDatalength).map((_, index) => (
           <View
             key={index}
             style={[
               styles.dotIndicator,
-              {backgroundColor: index === activeIndex ? '#406066' : '#cccccc'},
+              {
+                backgroundColor: index === activeIndex ? '#406066' : '#cccccc',
+              },
             ]}
           />
         ))}
@@ -439,7 +608,8 @@ const HomeHairCareCategory = ({toggleButton}) => {
       </View>
       <FlatList
         horizontal
-        data={hairCareProducts}
+        // data={haircaredata}
+        data={haircaredata}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         contentContainerStyle={styles.categoryContainer}
@@ -456,7 +626,8 @@ const HomeHairCareCategory = ({toggleButton}) => {
 };
 
 export default HomeHairCareCategory;
-
+const screenWidth = Dimensions.get('window').width;
+const itemWidth = screenWidth / 2 / 1.1;
 const styles = StyleSheet.create({
   categoryContainer: {
     // paddingHorizontal: 10,
@@ -466,8 +637,8 @@ const styles = StyleSheet.create({
   },
   categoryImages: {
     height: 175,
-    width: 180,
-    marginRight: 10,
+    width: itemWidth,
+    // marginRight: 10,
   },
   textContainer: {
     justifyContent: 'flex-start',
@@ -509,7 +680,7 @@ const styles = StyleSheet.create({
   bannerContainer: {
     position: 'absolute',
     top: 0,
-    right: 10,
+    right: 20,
     backgroundColor: '#92be2b',
     paddingVertical: 4,
     paddingHorizontal: 12,
@@ -518,5 +689,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 12,
     fontWeight: 'bold',
+  },
+  priceContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    position: 'relative',
   },
 });

@@ -37,7 +37,6 @@ const HomeScreen = () => {
     getUserProfile();
   }, []);
 
-
   const [toggleSwitchButton, setToggleSwitchButton] = useState(false);
 
   return (
@@ -48,15 +47,20 @@ const HomeScreen = () => {
       />
       {toggleSwitchButton ? (
         <View>
-          <Image source={Banner} style={styles.bannerImage} />
+          <Image
+            source={{
+              uri: "https://m.media-amazon.com/images/I/71onovtT6mL._SY625_.jpg",
+            }}
+            style={styles.bannerImage}
+          />
           {/* Banner */}
-          <HomeCarousal />
+          <HomeCarousal toggleButton={toggleSwitchButton} />
           <HomeDeals toggleButton={toggleSwitchButton} />
           {/* Banner2 */}
           <View style={styles.banner2Container}>
             <ImageBackground
               source={{
-                uri: "https://i.pinimg.com/564x/db/d7/a4/dbd7a47b2135572da54e710a567b5114.jpg",
+                uri: "https://www.linoperros.com/cdn/shop/files/LWHB02616FUSCHIA-53.jpg?v=1708433152&width=1800",
               }}
               style={styles.banner2Image}
               imageStyle={{
@@ -82,13 +86,13 @@ const HomeScreen = () => {
         <View>
           {/* Banner */}
 
-          <HomeCarousal />
+          <HomeCarousal toggleButton={toggleSwitchButton} />
           <Image source={Banner} style={styles.bannerImage} />
           {/* Banner2 */}
           <View style={styles.banner2Container}>
             <ImageBackground
               source={{
-                uri: "https://i.pinimg.com/564x/db/d7/a4/dbd7a47b2135572da54e710a567b5114.jpg",
+                uri: "https://m.media-amazon.com/images/I/71HyWpTisTL._SL1500_.jpg",
               }}
               style={styles.banner2Image}
               imageStyle={{
@@ -98,7 +102,7 @@ const HomeScreen = () => {
             >
               <View style={styles.buttonContainer}>
                 <Button
-                  title="Click Me"
+                  title="SHOP NOW"
                   onPress={() => alert("Button Pressed!")}
                   color="#3F6065"
                 />
